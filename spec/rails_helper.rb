@@ -1,8 +1,13 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
+
 require 'factory_bot_rails'
 require 'support/factory_bot'
+require 'shoulda/matchers'
+require 'database_cleaner'
+require 'ffaker'
+require 'byebug'
 
 # Update here
 require File.expand_path('../dummy/config/environment.rb', __FILE__)
@@ -65,4 +70,23 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  config.include Devise::TestHelpers, :type => :controller
+
+  config.after(:example, :dbclean => :after_each) do
+    DatabaseCleaner.clean
+  end
+
+  config.around(:example, :dbclean => :around_each) do |example|
+    DatabaseCleaner.clean
+    example.run
+    DatabaseCleaner.clean
+  end
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end

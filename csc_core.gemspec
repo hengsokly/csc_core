@@ -21,7 +21,14 @@ Gem::Specification.new do |spec|
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   spec.add_dependency "rails", "~> 6.1.4", ">= 6.1.4.4"
+  spec.add_dependency "devise", "~> 4.8.1"
+  spec.add_dependency "paranoia", "~> 2.4.3"
 
   spec.add_development_dependency "rspec-rails", "~> 5.0.0"
   spec.add_development_dependency "factory_bot_rails", "~> 6.2.0"
+  spec.add_development_dependency "ffaker", "~> 2.17.0"
+  spec.add_development_dependency "shoulda-matchers", "~> 4.0"
+  spec.add_development_dependency "database_cleaner"
+
+  spec.add_development_dependency "byebug"
 end
