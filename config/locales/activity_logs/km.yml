@@ -1,0 +1,19 @@
+km:
+  activity_logs:
+    title: កំណត់ហេតុសកម្មភាព
+    controller_name: Controller
+    action_name: Action
+    http_format: Format
+    http_method: Method
+    path: Path
+    http_status: Status
+    payload: Payload
+    duration: កំឡុងពេល
+    start_date: ថ្ងៃចាប់ផ្ដើម
+    end_date: ថ្ងៃបញ្ចប់
+    read_more: មើលបន្ថែម
+    read_less: បម្រួញ
+    request_duplicate: Request មានរួចហើយ
+    remote_ip: IP អ្នកប្រើ
+    query: ស្វែងរកតាមរយៈ path, email អ្នកប្រើប្រាស់, ឈ្មោះ program, ip អ្នកប្រើប្រាស់
+    whitelist_path: អនុញ្ញាតតែ whitelisted path តែប៉ុណ្ណោះ

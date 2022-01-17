@@ -7,6 +7,9 @@ require 'support/factory_bot'
 require 'shoulda/matchers'
 require 'database_cleaner'
 require 'ffaker'
+require "carrierwave/test/matchers"
+require "sidekiq/testing"
+require "rspec-sidekiq"
 require 'byebug'
 
 # Update here
@@ -75,6 +78,19 @@ RSpec.configure do |config|
 
   config.after(:example, :dbclean => :after_each) do
     DatabaseCleaner.clean
+
+    # Clears out the jobs for tests using the fake testing
+    Sidekiq::Worker.clear_all
+
+    if example.metadata[:sidekiq] == :fake
+      Sidekiq::Testing.fake!
+    elsif example.metadata[:sidekiq] == :inline
+      Sidekiq::Testing.inline!
+    elsif example.metadata[:sidekiq] == :disabled
+      Sidekiq::Testing.disable!
+    else
+      Sidekiq::Testing.fake!
+    end
   end
 
   config.around(:example, :dbclean => :around_each) do |example|
@@ -89,4 +105,8 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :rails
   end
+end
+
+RSpec::Sidekiq.configure do |config|
+  config.warn_when_jobs_not_processed_by_sidekiq = false
 end

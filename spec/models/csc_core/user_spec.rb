@@ -2,10 +2,13 @@ require 'rails_helper'
 
 module CscCore
   RSpec.describe User, type: :model do
+    it { is_expected.to belong_to(:program).optional(true) }
+    it { is_expected.to belong_to(:local_ngo).optional(true) }
+    it { is_expected.to validate_presence_of(:role) }
     it { is_expected.to define_enum_for(:role).with_values(system_admin: 1, program_admin: 2, staff: 3, lngo: 4) }
 
     describe "#display_name" do
-      let!(:user) { build(:user, email: "care.nara@program.org") }
+      let(:user) { build(:user, email: "care.nara@program.org") }
 
       it { expect(user.display_name).to eq("CARE.NARA") }
     end
@@ -53,6 +56,22 @@ module CscCore
         }
 
         it { expect(user.reload.authentication_token).to eq("a1b2c3d4") }
+      end
+    end
+
+    describe "#validate, validate_archived_email" do
+      let!(:user) { create(:user, email: "oren@email.com") }
+      let(:new_user) { user.dup }
+
+      before {
+        user.destroy
+        new_user.valid?
+      }
+
+      it { expect(new_user.valid?).to be_falsey }
+
+      it "renders error that email is being archived" do
+        expect(new_user.errors.first.options[:message]).to eq(I18n.t("user.is_being_archived"))
       end
     end
   end

@@ -1,4 +1,5 @@
 *.rbc
+.DS_Store
 capybara-*.html
 .rspec
 /db/*.sqlite3
@@ -67,3 +68,4 @@ yarn-debug.log*
 !/storage/.keep
 
 spec/dummy/log/*
+spec/dummy/public/uploads/*

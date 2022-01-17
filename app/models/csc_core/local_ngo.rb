@@ -1,0 +1,47 @@
+module CscCore
+  class LocalNgo < ApplicationRecord
+    self.table_name = "local_ngos"
+
+    belongs_to :program
+    has_many :cafs
+    has_many :scorecards
+
+    validates :name, presence: true, uniqueness: { scope: :program_id }
+    validates :website_url, url: {  allow_blank: true,
+                                    no_local: true,
+                                    public_suffix: true,
+                                    message: I18n.t("local_ngo.website_url.invalid") }
+
+    before_save :set_target_provinces, if: :will_save_change_to_target_province_ids?
+
+    def address(address_local = "address_km")
+      address_code = village_id.presence || commune_id.presence || district_id.presence || province_id.presence
+      return if address_code.nil?
+
+      "Pumi::#{Location.location_kind(address_code).titlecase}".constantize.find_by_id(address_code).try("#{address_local}".to_sym)
+    end
+
+    class << self
+      def filter(params)
+        scope = all
+        scope = by_keyword(params[:keyword], scope) if params[:keyword].present?
+        scope = scope.where(program_id: params[:program_id]) if params[:program_id].present?
+        scope
+      end
+
+      private
+        def by_keyword(keyword, scope)
+          return scope unless keyword.present?
+
+          province_ids = Pumi::Province.all.select { |p| p.name_km.downcase.include?(keyword.downcase) || p.name_en.downcase.include?(keyword.downcase) }.map(&:id)
+
+          scope.where("LOWER(name) LIKE ? OR LOWER(target_provinces) LIKE ? OR province_id IN (?)", "%#{keyword.downcase}%", "%#{keyword.downcase}%", province_ids)
+        end
+    end
+
+    private
+      def set_target_provinces
+        self.target_provinces = Pumi::Province.all.select { |p| target_province_ids.split(",").include?(p.id) }.sort_by { |x| x.id }.map(&:name_km).join(", ")
+      end
+  end
+end

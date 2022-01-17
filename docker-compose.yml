@@ -22,5 +22,11 @@ services:
       - "3000:3000"
     depends_on:
       - db
+      - redis
     stdin_open: true
     tty: true
+    environment:
+      - REDIS_URL=redis://redis:6379
+
+  redis:
+    image: redis:5.0.6

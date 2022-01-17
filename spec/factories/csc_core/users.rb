@@ -4,7 +4,7 @@ FactoryBot.define do
     password      { FFaker::Internet.password }
     role          { "program_admin" }
     confirmed_at  { DateTime.now }
-    program_id    {1}
+    program
     skip_callback { true }
 
     trait :allow_callback do
@@ -24,9 +24,9 @@ FactoryBot.define do
       role { "guest" }
     end
 
-    # trait :lngo do
-    #   role { "lngo" }
-    #   local_ngo_id { create(:local_ngo).id }
-    # end
+    trait :lngo do
+      role { "lngo" }
+      local_ngo_id { create(:local_ngo).id }
+    end
   end
 end

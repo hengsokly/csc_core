@@ -23,12 +23,23 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", "~> 6.1.4", ">= 6.1.4.4"
   spec.add_dependency "devise", "~> 4.8.1"
   spec.add_dependency "paranoia", "~> 2.4.3"
+  spec.add_dependency "date_validator", "~> 0.10.0"
+  spec.add_dependency "pumi", "~> 0.10.0"
+  spec.add_dependency "awesome_nested_set", "~> 3.2.1"
+  spec.add_dependency "doorkeeper", "~> 5.5.2"
+  spec.add_dependency "validate_url", "~> 1.0.13"
+  spec.add_dependency "carrierwave", "~> 2.1"
+  spec.add_dependency "telegram-bot", "~> 0.15.3"
+  spec.add_dependency "sidekiq", "~> 6.2.1"
+  spec.add_dependency "httparty", "~> 0.19.0"
+  spec.add_dependency "roo", "~> 2.8.3"
 
   spec.add_development_dependency "rspec-rails", "~> 5.0.0"
   spec.add_development_dependency "factory_bot_rails", "~> 6.2.0"
   spec.add_development_dependency "ffaker", "~> 2.17.0"
   spec.add_development_dependency "shoulda-matchers", "~> 4.0"
   spec.add_development_dependency "database_cleaner"
+  spec.add_development_dependency "rspec-sidekiq", "~> 3.1.0"
 
   spec.add_development_dependency "byebug"
 end

@@ -1,0 +1,19 @@
+en:
+  activity_logs:
+    title: Activity Logs
+    controller_name: Controller
+    action_name: Action
+    http_format: Format
+    http_method: Method
+    path: Path
+    http_status: Status
+    payload: Payload
+    duration: Duration
+    start_date: Start date
+    end_date: End date
+    more_html: "more &raquo;"
+    less_html: "&laquo; less"
+    request_duplicate: Request duplicate
+    remote_ip: Remote IP
+    query: search by path, user's email, program's name, remote ip
+    whitelist_path: allow only whitelist path

@@ -16,8 +16,6 @@ require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
 # When add gem at gemspec, need to require it here
-require "devise"
-require "paranoia"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
