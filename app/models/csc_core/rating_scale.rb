@@ -22,11 +22,13 @@ module CscCore
     end
 
     def self.create_defaults(km_language)
+      audios_path = Dir.glob("**/app/assets/audios/**")
+
       defaults.each do |rating|
         rating[:language_rating_scales_attributes].each do |lang_rating|
           lang_rating[:language_id] = km_language.id
           lang_rating[:language_code] = km_language.code
-          lang_rating[:audio] = Pathname.new(Dir.glob("app/assets/audios/**").select { |file| file.split("/").last == "#{lang_rating[:audio]}" }.first).open
+          lang_rating[:audio] = Pathname.new(audios_path.select { |file| file.split("/").last == "#{lang_rating[:audio]}" }.first).open
         end
 
         self.create(rating)
