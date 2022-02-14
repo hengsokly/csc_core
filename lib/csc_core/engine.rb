@@ -25,6 +25,9 @@ require "sidekiq"
 require "httparty"
 require "roo"
 
+## Permission
+require "pundit"
+
 module CscCore
   class Engine < ::Rails::Engine
     isolate_namespace CscCore
