@@ -7,6 +7,9 @@ class CreateCscCoreIndicators < ActiveRecord::Migration[6.1]
       t.integer :tag_id
       t.integer :display_order
       t.string  :image
+      t.string  :uuid
+      t.string  :audio
+      t.string  :type
 
       t.timestamps
     end

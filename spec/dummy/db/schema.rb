@@ -155,6 +155,9 @@ ActiveRecord::Schema.define(version: 2021_11_25_035231) do
     t.integer "tag_id"
     t.integer "display_order"
     t.string "image"
+    t.string "uuid"
+    t.string "audio"
+    t.string "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -347,6 +350,7 @@ ActiveRecord::Schema.define(version: 2021_11_25_035231) do
     t.string "participant_uuid"
     t.boolean "selected", default: false
     t.string "voting_indicator_uuid"
+    t.string "indicator_uuid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

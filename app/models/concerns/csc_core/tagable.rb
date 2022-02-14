@@ -13,7 +13,7 @@ module CscCore::Tagable
     }
 
     def tag_attributes=(attribute)
-      self.tag = Tag.find_or_create_by(name: attribute[:name].downcase) if attribute[:name].present?
+      self.tag = CscCore::Tag.find_or_create_by(name: attribute[:name].downcase) if attribute[:name].present?
     end
   end
 end

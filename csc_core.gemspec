@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "roo", "~> 2.8.3"
   spec.add_dependency "caxlsx", "~> 3.1.1"
   spec.add_dependency "caxlsx_rails", "~> 0.6.2"
+  spec.add_dependency "pundit", "~> 2.1.0"
 
   spec.add_development_dependency "rspec-rails", "~> 5.0.0"
   spec.add_development_dependency "factory_bot_rails", "~> 6.2.0"
