@@ -8,6 +8,7 @@ class CreateCscCoreRaisedIndicators < ActiveRecord::Migration[6.1]
       t.string  :participant_uuid
       t.boolean :selected, default: false
       t.string  :voting_indicator_uuid
+      t.string  :indicator_uuid
 
       t.timestamps
     end
