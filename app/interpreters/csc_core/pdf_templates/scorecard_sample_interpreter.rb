@@ -18,7 +18,7 @@ module CscCore
 
       private
         def fill_in_value
-          "&lt;#{ I18n.t('shared.fill_in') }&gt;"
+          "&lt;#{ I18n.t('interpreter.pdf_template.fill_in') }&gt;"
         end
     end
   end

@@ -23,7 +23,7 @@ module CscCore
           columns = %w(indicator average_score strength weakness suggested_action)
 
           headers = columns.map { |col|
-            "<th class='text-center'>" + I18n.t("scorecard.#{col}") + "</th>"
+            "<th class='text-center'>" + I18n.t("interpreter.pdf_template.#{col}") + "</th>"
           }.join("")
 
           "<tr>#{headers}</tr>"
@@ -44,14 +44,14 @@ module CscCore
         end
 
         def build_column_median(median)
-          str = I18n.t("rating_scale.#{median}") + " (#{VotingIndicator.medians[median]})"
+          str = I18n.t("interpreter.pdf_template.#{median}") + " (#{VotingIndicator.medians[median]})"
           "<td class='text-center'>#{str}</td>"
         end
 
         def build_list(indicator_activities)
           str = "<td><ul>"
           str += indicator_activities.map { |indicator_activity|
-            selected = indicator_activity.selected? ? "(#{I18n.t('indicator.selected')})" : ""
+            selected = indicator_activity.selected? ? "(#{I18n.t('interpreter.pdf_template.selected')})" : ""
             "<li>#{indicator_activity.content} #{selected}</li>"
           }.join("")
 

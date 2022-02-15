@@ -27,7 +27,7 @@ module CscCore
       end
 
       def scorecard_type
-        I18n.t("scorecard.#{@scorecard.scorecard_type}")
+        I18n.t("interpreter.pdf_template.#{@scorecard.scorecard_type}")
       end
     end
   end

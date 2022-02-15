@@ -19,7 +19,7 @@ module CscCore
           columns = %w(indicator average_score strength weakness suggested_action)
 
           headers = columns.map { |col|
-            "<th class='text-center'>" + I18n.t("scorecard.#{col}") + "</th>"
+            "<th class='text-center'>" + I18n.t("interpreter.pdf_template.#{col}") + "</th>"
           }.join("")
 
           "<tr>#{headers}</tr>"
@@ -44,7 +44,7 @@ module CscCore
         end
 
         def fill_in_value
-          "&lt;#{ I18n.t('shared.fill_in') }&gt;"
+          "&lt;#{ I18n.t('interpreter.pdf_template.fill_in') }&gt;"
         end
     end
   end
