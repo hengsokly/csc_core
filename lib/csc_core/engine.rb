@@ -31,6 +31,9 @@ require "pundit"
 ## Pdf
 require "wicked_pdf"
 
+## Telegram
+require "telegram/bot"
+
 module CscCore
   class Engine < ::Rails::Engine
     isolate_namespace CscCore
