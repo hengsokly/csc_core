@@ -28,6 +28,9 @@ require "roo"
 ## Permission
 require "pundit"
 
+## Pdf
+require "wicked_pdf"
+
 module CscCore
   class Engine < ::Rails::Engine
     isolate_namespace CscCore

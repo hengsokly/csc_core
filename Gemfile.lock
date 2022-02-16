@@ -18,6 +18,8 @@ PATH
       sidekiq (~> 6.2.1)
       telegram-bot (~> 0.15.3)
       validate_url (~> 1.0.13)
+      wicked_pdf (~> 2.1.0)
+      wkhtmltopdf-binary (~> 0.12.6.5)
 
 GEM
   remote: https://rubygems.org/
@@ -262,6 +264,9 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    wicked_pdf (2.1.0)
+      activesupport
+    wkhtmltopdf-binary (0.12.6.5)
     zeitwerk (2.5.3)
 
 PLATFORMS

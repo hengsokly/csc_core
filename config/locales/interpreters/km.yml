@@ -1,0 +1,17 @@
+km:
+  interpreter:
+    pdf_template:
+      self_assessment: ការវាយតម្លៃខ្លួនឯង
+      community_scorecard: ប័ណ្ណដាក់ពិន្ទុសហគមន៍
+      median: មេដ្យាន
+      average_score: ពិន្ទុមធ្យម
+      strength: ចំនុចខ្លាំង
+      weakness: ចំនុចខ្សោយ (បញ្ហា)
+      suggested_action: សកម្មភាពដែលស្នើឡើង (ដំណោះស្រាយ)
+      indicator: លក្ខណៈវិនិច្ឆ័យ
+      fill_in: បំពេញ
+      very_bad: មិនពេញចិត្តខ្លាំង
+      bad: មិនពេញចិត្ត
+      acceptable: ទទួលយកបាន
+      good: ពេញចិត្ត
+      very_good: ពេញចិត្តខ្លាំង

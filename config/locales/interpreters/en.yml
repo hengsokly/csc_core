@@ -1,0 +1,17 @@
+en:
+  interpreter:
+    pdf_template:
+      self_assessment: Self assessment
+      community_scorecard: Community scorecard
+      median: Median
+      average_score: Average Score
+      strength: Strength
+      weakness: Weakness (reflection)
+      suggested_action: Suggested actions (solution)
+      indicator: Indicator
+      fill_in: Fill in
+      very_bad: Very bad
+      bad: Bad
+      acceptable: Acceptable
+      good: Good
+      very_good: Very good
