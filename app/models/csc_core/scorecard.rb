@@ -40,10 +40,10 @@ module CscCore
     has_many   :scorecard_references, foreign_key: :scorecard_uuid, primary_key: :uuid
     # has_many   :request_changes, foreign_key: :scorecard_uuid, primary_key: :uuid
 
-    # has_many   :indicator_activities, foreign_key: :scorecard_uuid, primary_key: :uuid
-    # has_many   :strength_indicator_activities, foreign_key: :scorecard_uuid, primary_key: :uuid
-    # has_many   :weakness_indicator_activities, foreign_key: :scorecard_uuid, primary_key: :uuid
-    # has_many   :suggested_indicator_activities, foreign_key: :scorecard_uuid, primary_key: :uuid
+    has_many   :indicator_activities, foreign_key: :scorecard_uuid, primary_key: :uuid
+    has_many   :strength_indicator_activities, foreign_key: :scorecard_uuid, primary_key: :uuid
+    has_many   :weakness_indicator_activities, foreign_key: :scorecard_uuid, primary_key: :uuid
+    has_many   :suggested_indicator_activities, foreign_key: :scorecard_uuid, primary_key: :uuid
 
     delegate  :name, to: :local_ngo, prefix: :local_ngo, allow_nil: true
     delegate  :name_en, :name_km, to: :primary_school, prefix: :primary_school, allow_nil: true
