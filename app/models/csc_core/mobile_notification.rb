@@ -8,7 +8,7 @@ module CscCore
     after_commit :push_notification_async, on: [:create]
 
     def push_notification_async
-      # MobileNotificationWorker.perform_async(id)
+      MobileNotificationWorker.perform_async(id)
     end
 
     def build_content
