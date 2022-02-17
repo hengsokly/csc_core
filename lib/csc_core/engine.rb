@@ -34,6 +34,9 @@ require "wicked_pdf"
 ## Telegram
 require "telegram/bot"
 
+## Push notification
+require "fcm"
+
 module CscCore
   class Engine < ::Rails::Engine
     isolate_namespace CscCore
