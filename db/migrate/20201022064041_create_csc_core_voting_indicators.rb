@@ -11,6 +11,7 @@ class CreateCscCoreVotingIndicators < ActiveRecord::Migration[6.1]
       t.text    :weakness
       t.text    :suggested_action
       t.integer :display_order
+      t.string  :indicator_uuid
 
       t.timestamps
     end

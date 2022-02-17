@@ -18,6 +18,8 @@ module CscCore
     # Todo:
     enum progress: ScorecardProgress.statuses
 
+    STATUS_COMPLETED = "completed"
+    STATUS_IN_REVIEW = "in_review"
     SCORECARD_TYPES = scorecard_types.keys.map { |key| [I18n.t("scorecard.#{key}"), key] }
 
     belongs_to :unit_type, class_name: "Facility"
@@ -38,7 +40,7 @@ module CscCore
     has_many   :scorecard_progresses, foreign_key: :scorecard_uuid, primary_key: :uuid
     has_many   :suggested_actions, foreign_key: :scorecard_uuid, primary_key: :uuid
     has_many   :scorecard_references, foreign_key: :scorecard_uuid, primary_key: :uuid
-    # has_many   :request_changes, foreign_key: :scorecard_uuid, primary_key: :uuid
+    has_many   :request_changes, foreign_key: :scorecard_uuid, primary_key: :uuid
 
     has_many   :indicator_activities, foreign_key: :scorecard_uuid, primary_key: :uuid
     has_many   :strength_indicator_activities, foreign_key: :scorecard_uuid, primary_key: :uuid

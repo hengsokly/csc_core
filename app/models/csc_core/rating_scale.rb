@@ -22,7 +22,7 @@ module CscCore
     end
 
     def self.create_defaults(km_language)
-      audios_path = Dir.glob("**/app/assets/audios/**")
+      audios_path = Dir.glob(CscCore::Engine.root.join("app", "assets", "audios", "**"))
 
       defaults.each do |rating|
         rating[:language_rating_scales_attributes].each do |lang_rating|
