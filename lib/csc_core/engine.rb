@@ -24,6 +24,8 @@ require "carrierwave"
 require "sidekiq"
 require "httparty"
 require "roo"
+require "caxlsx"
+require "caxlsx_rails"
 
 ## Permission
 require "pundit"
@@ -36,6 +38,8 @@ require "telegram/bot"
 
 ## Push notification
 require "fcm"
+
+# require "exports/excel_exporter"
 
 module CscCore
   class Engine < ::Rails::Engine
