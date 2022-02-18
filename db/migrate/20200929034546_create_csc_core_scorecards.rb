@@ -44,6 +44,7 @@ class CreateCscCoreScorecards < ActiveRecord::Migration[6.1]
       t.string   :device_token
       t.datetime :submitted_at
       t.datetime :completed_at
+      t.integer  :completor_id
 
       t.timestamps
     end
