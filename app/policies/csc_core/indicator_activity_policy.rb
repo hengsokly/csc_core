@@ -1,25 +1,21 @@
 # frozen_string_literal: true
 
 module CscCore
-  class IndicatorPolicy < ApplicationPolicy
+  class IndicatorActivityPolicy < ApplicationPolicy
     def index?
-      user.program_admin? || user.staff?
+      user.program_admin? || user.staff? || user.lngo?
     end
 
     def create?
-      user.program_admin? || user.staff?
+      index?
     end
 
     def update?
-      create?
+      user.lngo?
     end
 
     def destroy?
       create?
-    end
-
-    def custom?
-      user.lngo? && record.custom?
     end
 
     class Scope < Scope
