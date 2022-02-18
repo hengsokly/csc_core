@@ -47,6 +47,10 @@ module CscCore
       raised_indicators.blank?
     end
 
+    def custom?
+      type == "CscCore::Indicators::CustomIndicator"
+    end
+
     # Class methods
     def self.filter(params)
       scope = all

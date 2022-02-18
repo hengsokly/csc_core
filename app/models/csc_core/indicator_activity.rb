@@ -11,6 +11,15 @@ module CscCore
     # Todo: after interim period of v1 and v2, it should be removed
     after_validation :secure_uniqness
 
+    def self.inherited(child)
+      child.instance_eval do
+        def model_name
+          CscCore::IndicatorActivity.model_name
+        end
+      end
+      super
+    end
+
     private
       def secure_uniqness
         activity = IndicatorActivity.find_by(content: content, voting_indicator_uuid: voting_indicator_uuid, type: type)
