@@ -1,0 +1,30 @@
+# frozen_string_literal: true
+
+require "rails_helper"
+
+module CscCore
+  RSpec.describe RequestLogParser do
+    describe "#parse" do
+      let(:parser) { described_class.parse(data) }
+
+      context "with whitelist attributes" do
+        let(:data) { { controller: "TestController" } }
+
+        specify { expect(parser).to have_key(:controller) }
+      end
+
+      context "without whitelist attributes" do
+        let(:data) { { bad_key: "BadKey" } }
+
+        specify { expect(parser).not_to have_key(:bad_key) }
+      end
+
+      context "with payload" do
+        let(:data) { { params: { controller: "TestController", action: "test" } } }
+
+        specify { expect(parser).not_to have_key(:controller) }
+        specify { expect(parser).not_to have_key(:action) }
+      end
+    end
+  end
+end
