@@ -2,6 +2,8 @@
 
 ## omniauth
 require "devise"
+require "omniauth-google-oauth2"
+require "omniauth/rails_csrf_protection"
 require "doorkeeper"
 
 ## Soft delete
@@ -24,6 +26,8 @@ require "carrierwave"
 require "sidekiq"
 require "httparty"
 require "roo"
+require "caxlsx"
+require "caxlsx_rails"
 
 ## Permission
 require "pundit"
@@ -36,6 +40,8 @@ require "telegram/bot"
 
 ## Push notification
 require "fcm"
+
+# require "exports/excel_exporter"
 
 module CscCore
   class Engine < ::Rails::Engine

@@ -7,5 +7,8 @@ module CscCore
     before_create :secure_uuid
 
     GENDERS=%w(female male other)
+    GENDER_MALE = "male"
+    GENDER_FEMALE = "female"
+    GENDER_OTHER = "other"
   end
 end

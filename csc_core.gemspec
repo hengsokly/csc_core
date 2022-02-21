@@ -22,6 +22,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", "~> 6.1.4", ">= 6.1.4.6"
   spec.add_dependency "devise", "~> 4.8.1"
+  spec.add_dependency "omniauth-rails_csrf_protection", "~> 1.0.0"
+  spec.add_dependency "omniauth-google-oauth2", "~> 1.0.0"
   spec.add_dependency "paranoia", "~> 2.4.3"
   spec.add_dependency "date_validator", "~> 0.10.0"
   spec.add_dependency "pumi", "~> 0.10.0"
