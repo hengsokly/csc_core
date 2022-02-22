@@ -43,11 +43,11 @@ module CscCore
     delegate :enabled, to: :telegram_bot, prefix: :telegram_bot, allow_nil: true
 
     def create_dashboard
-      ::Dashboard.new(self).create
+      Dashboard.new(self).create
     end
 
     def update_dashboard
-      ::Dashboard.new(self).update
+      Dashboard.new(self).update
     end
 
     private
