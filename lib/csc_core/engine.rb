@@ -41,7 +41,10 @@ require "telegram/bot"
 ## Push notification
 require "fcm"
 
-# require "exports/excel_exporter"
+## Elasticsearch
+require "elasticsearch/model"
+require "elasticsearch/rails"
+require "ndjson"
 
 module CscCore
   class Engine < ::Rails::Engine

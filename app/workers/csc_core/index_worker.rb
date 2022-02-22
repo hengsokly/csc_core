@@ -5,7 +5,7 @@ class CscCore::IndexWorker
   sidekiq_options queue: "index_document"
 
   def perform(operation, scorecard_uuid)
-    scorecard = Scorecard.with_deleted.find_by(uuid: scorecard_uuid)
+    scorecard = CscCore::Scorecard.with_deleted.find_by(uuid: scorecard_uuid)
 
     return if scorecard.nil?
 

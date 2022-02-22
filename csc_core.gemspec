@@ -42,6 +42,10 @@ Gem::Specification.new do |spec|
   spec.add_dependency "wkhtmltopdf-binary", "~> 0.12.6.5"
   spec.add_dependency "fcm", "~> 1.0.6"
 
+  spec.add_dependency "elasticsearch-model", "~> 7.1.1"
+  spec.add_dependency "elasticsearch-rails", "~> 7.1.1"
+  spec.add_dependency "ndjson", "~> 1.0.0"
+
   spec.add_development_dependency "rspec-rails", "~> 5.0.0"
   spec.add_development_dependency "factory_bot_rails", "~> 6.2.0"
   spec.add_development_dependency "ffaker", "~> 2.17.0"
