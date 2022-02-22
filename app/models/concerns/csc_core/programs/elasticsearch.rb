@@ -1,10 +1,9 @@
 # frozen_string_literal: true
-
 module CscCore::Programs::Elasticsearch
   extend ActiveSupport::Concern
 
   included do
-    after_create { ProgramWorker.perform_async(id) if ENV["ELASTICSEARCH_ENABLED"] == "true" }
+    after_create { CscCore::ProgramWorker.perform_async(id) if ENV["ELASTICSEARCH_ENABLED"] == "true" }
 
     def reindex_documents
       return unless ENV["ELASTICSEARCH_ENABLED"] == "true"
@@ -15,7 +14,7 @@ module CscCore::Programs::Elasticsearch
     end
 
     def index_name
-      @index_name ||= "#{Scorecard.index_name}_#{name.downcase.split(' ').join('_')}"
+      @index_name ||= "#{CscCore::Scorecard.index_name}_#{name.downcase.split(' ').join('_')}"
     end
 
     def create_index
@@ -23,7 +22,7 @@ module CscCore::Programs::Elasticsearch
 
       client.indices.create \
         index: index_name,
-        body: { settings: Scorecard.settings.to_hash, mappings: Scorecard.mappings.to_hash }
+        body: { settings: CscCore::Scorecard.settings.to_hash, mappings: CscCore::Scorecard.mappings.to_hash }
     end
 
     private

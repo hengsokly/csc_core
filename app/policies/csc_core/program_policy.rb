@@ -19,7 +19,7 @@ module CscCore
     end
 
     def es_reindex?
-      user.system_admin?
+      user.system_admin? && ENV["ELASTICSEARCH_ENABLED"] == "true"
     end
 
     class Scope < Scope
