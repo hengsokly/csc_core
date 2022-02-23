@@ -44,7 +44,7 @@ module CscCore
         end
 
         def build_column_median(median)
-          str = I18n.t("interpreter.pdf_template.#{median}") + " (#{VotingIndicator.medians[median]})"
+          str = I18n.t("interpreter.pdf_template.#{median}") + " (#{CscCore::VotingIndicator.medians[median]})"
           "<td class='text-center'>#{str}</td>"
         end
 

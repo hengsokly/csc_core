@@ -25,7 +25,7 @@ module CscCore
         model = embeded_field.split(".")[0]
         field = embeded_field.split(".")[1]
 
-        "PdfTemplates::#{model.camelcase}Interpreter".constantize.new(scorecard).load(field)
+        "CscCore::PdfTemplates::#{model.camelcase}Interpreter".constantize.new(scorecard).load(field)
         rescue
           Rails.logger.warn "Model #{model} and field #{field} is unknwon"
           ""
