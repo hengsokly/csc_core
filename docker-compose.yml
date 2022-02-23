@@ -13,7 +13,7 @@ services:
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
 
-  web:
+  web: &rails
     build: .
     command: bash -c "rm -f spec/dummy/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
@@ -76,6 +76,12 @@ services:
       - ES_JAVA_OPTS=-Xms512m -Xmx512m
       - ELASTICSEARCH_ENABLED=false
 
+      # File upload to s3
+      - AWS_ACCESS_KEY_ID=key_id
+      - AWS_SECRET_ACCESS_KEY=access_key
+      - AWS_NAME_OF_BUCKET=bucket_name
+      - AWS_REGION=region
+
   redis:
     image: redis:5.0.6
 
@@ -96,8 +102,6 @@ services:
       options:
         max-size: 1m
         max-file: '10'
-    ports:
-      - 9200:9200
 
   sidekiq:
     <<: *rails

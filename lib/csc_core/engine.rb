@@ -21,6 +21,7 @@ require "awesome_nested_set"
 
 ## File uploader
 require "carrierwave"
+require "fog/aws"
 
 ## Util
 require "sidekiq"
