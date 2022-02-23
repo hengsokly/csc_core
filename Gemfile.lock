@@ -12,6 +12,7 @@ PATH
       elasticsearch-model (~> 7.2.0)
       elasticsearch-rails (~> 7.2.0)
       fcm (~> 1.0.6)
+      fog-aws
       httparty (~> 0.19.0)
       ndjson (~> 1.0.0)
       omniauth-google-oauth2 (~> 1.0.0)
@@ -139,15 +140,16 @@ GEM
       elasticsearch-transport (= 7.17.0)
     elasticsearch-api (7.17.0)
       multi_json
-    elasticsearch-model (7.2.0)
+    elasticsearch-model (7.2.1)
       activesupport (> 3)
       elasticsearch (~> 7)
       hashie
-    elasticsearch-rails (7.2.0)
+    elasticsearch-rails (7.2.1)
     elasticsearch-transport (7.17.0)
       faraday (~> 1)
       multi_json
     erubi (1.10.0)
+    excon (0.91.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -181,6 +183,23 @@ GEM
       googleauth (~> 1)
     ffaker (2.17.0)
     ffi (1.15.5)
+    fog-aws (3.8.0)
+      fog-core (~> 2.1)
+      fog-json (~> 1.1)
+      fog-xml (~> 0.1)
+      ipaddress (~> 0.8)
+    fog-core (2.2.4)
+      builder
+      excon (~> 0.71)
+      formatador (~> 0.2)
+      mime-types
+    fog-json (1.2.0)
+      fog-core
+      multi_json (~> 1.10)
+    fog-xml (0.1.4)
+      fog-core
+      nokogiri (>= 1.5.11, < 2.0.0)
+    formatador (0.3.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     googleauth (1.1.1)
@@ -201,6 +220,7 @@ GEM
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
+    ipaddress (0.8.3)
     jwt (2.3.0)
     loofah (2.14.0)
       crass (~> 1.0.2)

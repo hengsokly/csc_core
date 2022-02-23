@@ -43,6 +43,7 @@ Gem::Specification.new do |spec|
 
   # File upload
   spec.add_dependency "carrierwave", "~> 2.1"
+  spec.add_dependency "fog-aws", "~> 3.8.0"
 
   # Telegram
   spec.add_dependency "telegram-bot", "~> 0.15.3"
