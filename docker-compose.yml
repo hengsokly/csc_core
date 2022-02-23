@@ -3,7 +3,7 @@ version: "3.9"
 volumes:
   db:
   bundle:
-  # elastic:
+  elastic:
 
 services:
   db:
@@ -24,36 +24,82 @@ services:
     depends_on:
       - db
       - redis
-      # - elasticsearch
+      - elasticsearch
     stdin_open: true
     tty: true
     environment:
+      # App database config
+      - DB_HOST=db
+      - DB_USER=postgres
+      - DB_PWD=
+      - RAILS_MAX_THREADS=5
+
+      # For Sidekiq
       - REDIS_URL=redis://redis:6379
+
+      # For signin with gmail
+      - GOOGLE_CLIENT_ID=change_client_id
+      - GOOGLE_CLIENT_SECRET=change_client_secret
+
+      # For mobile push notification
+      - FIREBASE_SERVER_KEY=server_key
+
+      # Grafana Dashboard and interpreter
+      - GF_DASHBOARD_URL=http://localhost:8000/login/generic_oauth
+      - GF_DASHBOARD_ADMIN_USERNAME=admin
+      - GF_DASHBOARD_ADMIN_PASSWORD=123456
+      - GF_DASHBOARD_BASE_URL=http://192.168.1.115:8000
+
+      # Grafana Datasource and interpreter
+      - GF_DATASOURCE_TYPE=postgres
+      - GF_DATASOURCE_URL=192.168.1.115:5432
+      - GF_DATASOURCE_DATABASE=app_development
+      - GF_DATASOURCE_USER=postgres
+      - GF_DATASOURCE_PASSWORD=''
+
+      # Grafana interpreter for map
+      - GEO_JSON_URL=http://192.168.1.115:3000/provinces.json
+
+      # For accept request from grafana dashboard
+      # CORS allow domains separated by comma
+      - CORS_ALLOW_ORIGINS=isaf-dashboard-stg.ilabsea.org,localhost:8000
+
+      # Telegram url
+      - TELEGRAM_CALLBACK_URL=https://ngrok.io/telegram
+
+      # For elasticsearch
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - ELASTICSEARCH_REQUEST_TIMEOUT=300 #seconds
+      - ELASTIC_USERNAME=elastic
+      - ELASTIC_PASSWORD=elastic
+      - ELASTIC_COMPRESSION=true
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - ELASTICSEARCH_ENABLED=false
 
   redis:
     image: redis:5.0.6
 
-  # elasticsearch:
-  #   image: elasticsearch:7.12.0
-  #   environment:
-  #     - discovery.type=single-node
-  #     - ES_JAVA_OPTS=-Xms512m -Xmx512m
-  #   volumes:
-  #     - elastic:/usr/share/elasticsearch/data
-  #   healthcheck:
-  #     test: curl -s http://localhost:9200 >/dev/null; if [[ $$? == 52 ]]; then echo 0; else echo 1; fi
-  #     interval: 30s
-  #     timeout: 10s
-  #     retries: 5
-  #   logging:
-  #     driver: json-file
-  #     options:
-  #       max-size: 1m
-  #       max-file: '10'
-  #   ports:
-  #     - 9200:9200
+  elasticsearch:
+    image: elasticsearch:7.12.0
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    volumes:
+      - elastic:/usr/share/elasticsearch/data
+    healthcheck:
+      test: curl -s http://localhost:9200 >/dev/null; if [[ $$? == 52 ]]; then echo 0; else echo 1; fi
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    logging:
+      driver: json-file
+      options:
+        max-size: 1m
+        max-file: '10'
+    ports:
+      - 9200:9200
 
-  # sidekiq:
-  #   <<: *rails
-  #   command: bundle exec sidekiq -C config/sidekiq.yml
-  #   ports: []
+  sidekiq:
+    <<: *rails
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    ports: []
