@@ -15,7 +15,6 @@ module CscCore
       community_scorecard: 2
     }
 
-    # Todo:
     enum progress: ScorecardProgress.statuses
 
     STATUS_COMPLETED = "completed"

@@ -46,6 +46,9 @@ require "elasticsearch/model"
 require "elasticsearch/rails"
 require "ndjson"
 
+## Clean space
+require "strip_attributes"
+
 module CscCore
   class Engine < ::Rails::Engine
     isolate_namespace CscCore

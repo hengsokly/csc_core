@@ -2,6 +2,8 @@ module CscCore
   class ApplicationRecord < ActiveRecord::Base
     self.abstract_class = true
 
+    strip_attributes
+
     private
       def secure_uuid
         self.uuid ||= SecureRandom.uuid

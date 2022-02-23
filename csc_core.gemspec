@@ -21,31 +21,62 @@ Gem::Specification.new do |spec|
   spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   spec.add_dependency "rails", "~> 6.1.4", ">= 6.1.4.6"
+
+  # Oauth
   spec.add_dependency "devise", "~> 4.8.1"
   spec.add_dependency "omniauth-rails_csrf_protection", "~> 1.0.0"
   spec.add_dependency "omniauth-google-oauth2", "~> 1.0.0"
-  spec.add_dependency "paranoia", "~> 2.4.3"
-  spec.add_dependency "date_validator", "~> 0.10.0"
-  spec.add_dependency "pumi", "~> 0.10.0"
-  spec.add_dependency "awesome_nested_set", "~> 3.2.1"
   spec.add_dependency "doorkeeper", "~> 5.5.2"
+
+  # Soft delete
+  spec.add_dependency "paranoia", "~> 2.4.3"
+
+  # Validation
+  spec.add_dependency "date_validator", "~> 0.10.0"
   spec.add_dependency "validate_url", "~> 1.0.13"
+
+  # Location
+  spec.add_dependency "pumi", "~> 0.10.0"
+
+  # Nested category
+  spec.add_dependency "awesome_nested_set", "~> 3.2.1"
+
+  # File upload
   spec.add_dependency "carrierwave", "~> 2.1"
+
+  # Telegram
   spec.add_dependency "telegram-bot", "~> 0.15.3"
+
+  # Background process
   spec.add_dependency "sidekiq", "~> 6.4.0"
+
+  # Send request
   spec.add_dependency "httparty", "~> 0.19.0"
+
+  # Excel read, write
   spec.add_dependency "roo", "~> 2.8.3"
   spec.add_dependency "caxlsx", "~> 3.1.1"
   spec.add_dependency "caxlsx_rails", "~> 0.6.2"
+
+  # Permission
   spec.add_dependency "pundit", "~> 2.1.0"
+
+  # Pdf generate
   spec.add_dependency "wicked_pdf", "~> 2.1.0"
   spec.add_dependency "wkhtmltopdf-binary", "~> 0.12.6.5"
+
+  # Clean space
+  spec.add_dependency "strip_attributes", "~> 1.11.0"
+
+  # Mobile push notification
   spec.add_dependency "fcm", "~> 1.0.6"
 
-  spec.add_dependency "elasticsearch-model", "~> 7.1.1"
-  spec.add_dependency "elasticsearch-rails", "~> 7.1.1"
+  # Elasticsearch
+  spec.add_dependency "elasticsearch-model", "~> 7.2.0"
+  spec.add_dependency "elasticsearch-rails", "~> 7.2.0"
   spec.add_dependency "ndjson", "~> 1.0.0"
 
+  # Spec
   spec.add_development_dependency "rspec-rails", "~> 5.0.0"
   spec.add_development_dependency "factory_bot_rails", "~> 6.2.0"
   spec.add_development_dependency "ffaker", "~> 2.17.0"
