@@ -1,19 +1,19 @@
 FactoryBot.define do
-  factory :facility, class: 'CscCore::Facility' do
+  factory :facility, class: "CscCore::Facility" do
     name_en        { FFaker::Name.name }
     name_km        { name_en }
     code           { name.upcase.split(" ").map { |n| n[0] }.join("") }
     program
 
-    # trait :with_indicators do
-    #   transient do
-    #     indicator_count { 1 }
-    #   end
+    trait :with_indicators do
+      transient do
+        indicator_count { 1 }
+      end
 
-    #   after(:create) do |facility, evaluator|
-    #     create_list(:indicator, evaluator.indicator_count, :with_languages_indicators, categorizable: facility)
-    #   end
-    # end
+      after(:create) do |facility, evaluator|
+        create_list(:indicator, evaluator.indicator_count, :with_languages_indicators, categorizable: facility)
+      end
+    end
 
     trait :with_parent do
       after(:create) do |facility, evaluator|
@@ -21,12 +21,12 @@ FactoryBot.define do
       end
     end
 
-    # trait :dataset do
-    #   dataset     { "ps" }
+    trait :dataset do
+      dataset     { "ps" }
 
-    #   before(:create) do |facility, evaluator|
-    #     create(:primary_school)
-    #   end
-    # end
+      before(:create) do |facility, evaluator|
+        create(:primary_school)
+      end
+    end
   end
 end

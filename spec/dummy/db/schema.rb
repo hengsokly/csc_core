@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_25_035231) do
+ActiveRecord::Schema.define(version: 2022_02_17_085133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -144,6 +144,16 @@ ActiveRecord::Schema.define(version: 2021_11_25_035231) do
     t.integer "org_id"
     t.string "org_token"
     t.integer "program_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "indicator_activities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "voting_indicator_uuid"
+    t.string "scorecard_uuid"
+    t.text "content"
+    t.boolean "selected"
+    t.string "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -457,6 +467,7 @@ ActiveRecord::Schema.define(version: 2021_11_25_035231) do
     t.string "device_token"
     t.datetime "submitted_at"
     t.datetime "completed_at"
+    t.integer "completor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["deleted_at"], name: "index_scorecards_on_deleted_at"
@@ -542,6 +553,7 @@ ActiveRecord::Schema.define(version: 2021_11_25_035231) do
     t.text "weakness"
     t.text "suggested_action"
     t.integer "display_order"
+    t.string "indicator_uuid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

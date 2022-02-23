@@ -23,7 +23,7 @@ module CscCore
       def get_field_value(embeded_field)
         model = embeded_field.split(".")[0]
         field = embeded_field.split(".")[1]
-        value = "Messages::#{model.camelcase}Interpreter".constantize.new(scorecard).load(field)
+        value = "CscCore::Messages::#{model.camelcase}Interpreter".constantize.new(scorecard).load(field)
 
         "<b>#{value}</b>"
         rescue
