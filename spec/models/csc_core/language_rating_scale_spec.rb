@@ -15,7 +15,7 @@ module CscCore
 
       before do
         AudioUploader.enable_processing = true
-        File.open("./spec/fixtures/files/audio.mp3") { |f| uploader.store!(f) }
+        File.open(fixture_attachment_path("audio.mp3")) { |f| uploader.store!(f) }
       end
 
       after do

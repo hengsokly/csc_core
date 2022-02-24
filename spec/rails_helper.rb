@@ -2,15 +2,8 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 
-require 'factory_bot_rails'
-require 'support/factory_bot'
-require 'shoulda/matchers'
-require 'database_cleaner'
-require 'ffaker'
-require "carrierwave/test/matchers"
-require "sidekiq/testing"
-require "rspec-sidekiq"
-require 'byebug'
+# all require files for rspec
+require "csc_core/testing_support/rspec_config"
 
 # Update here
 require File.expand_path('../dummy/config/environment.rb', __FILE__)

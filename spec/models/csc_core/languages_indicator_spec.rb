@@ -35,7 +35,7 @@ module CscCore
 
       before do
         AudioUploader.enable_processing = true
-        File.open("./spec/fixtures/files/audio.mp3") { |f| uploader.store!(f) }
+        File.open(fixture_attachment_path("audio.mp3")) { |f| uploader.store!(f) }
       end
 
       after do
@@ -47,7 +47,7 @@ module CscCore
     end
 
     describe "validate file size" do
-      let(:big_file) { File.open("./spec/fixtures/files/big_audio.mp3") }
+      let(:big_file) { File.open(fixture_attachment_path("big_audio.mp3")) }
       let(:languages_indicator) { build(:languages_indicator, audio: big_file) }
 
       it { expect(languages_indicator.valid?).to be_falsey }

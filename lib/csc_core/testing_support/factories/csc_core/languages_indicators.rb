@@ -4,6 +4,6 @@ FactoryBot.define do
     language_code { language.code }
     content       { FFaker::Name.name }
     indicator
-    audio         { Rack::Test::UploadedFile.new("./spec/fixtures/files/audio.mp3") }
+    audio         { Rack::Test::UploadedFile.new(fixture_attachment_path("audio.mp3")) }
   end
 end
