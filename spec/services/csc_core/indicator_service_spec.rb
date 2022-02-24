@@ -24,15 +24,15 @@ module CscCore
       let!(:program)  { create(:program) }
       let(:facility)  { create(:facility, :with_indicators, program: program) }
       let(:service)   { IndicatorService.new(facility.id) }
-      let(:template)  { CscCore::Template.first }
+      let(:template)  { Template.first }
       let(:indicators) { template.indicators }
 
       before {
         service.clone_to_template("Base line")
       }
 
-      it { expect(CscCore::Template.count).to eq(1) }
-      it { expect(CscCore::Template.first.name).to eq(template.name) }
+      it { expect(Template.count).to eq(1) }
+      it { expect(Template.first.name).to eq(template.name) }
       it { expect(indicators.length).to eq(facility.indicators.length) }
       it { expect(indicators.first.tag).to eq(facility.indicators.first.tag) }
       it { expect(indicators.first.languages_indicators.length).to eq(facility.indicators.first.languages_indicators.length) }

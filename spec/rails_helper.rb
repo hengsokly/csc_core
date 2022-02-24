@@ -2,15 +2,8 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 
-require 'factory_bot_rails'
-require 'support/factory_bot'
-require 'shoulda/matchers'
-require 'database_cleaner'
-require 'ffaker'
-require "carrierwave/test/matchers"
-require "sidekiq/testing"
-require "rspec-sidekiq"
-require 'byebug'
+# all require files for rspec
+require "csc_core/testing_support/rspec_config"
 
 # Update here
 require File.expand_path('../dummy/config/environment.rb', __FILE__)
@@ -37,7 +30,7 @@ require 'rspec/rails'
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
 begin
-  ActiveRecord::Migration.maintain_test_schema!
+  # ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1

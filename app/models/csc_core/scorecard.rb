@@ -21,12 +21,13 @@ module CscCore
     STATUS_IN_REVIEW = "in_review"
     SCORECARD_TYPES = scorecard_types.keys.map { |key| [I18n.t("scorecard.#{key}"), key] }
 
-    belongs_to :unit_type, class_name: "Facility"
+    belongs_to :unit_type, class_name: "CscCore::Facility"
     belongs_to :facility
     belongs_to :local_ngo, optional: true
     belongs_to :program
     belongs_to :location, foreign_key: :location_code, optional: true
-    belongs_to :creator, class_name: "User"
+    belongs_to :creator, class_name: "CscCore::User"
+    belongs_to :completor, class_name: "CscCore::User", optional: true
     belongs_to :primary_school, foreign_key: :primary_school_code, optional: true
 
     has_many   :facilitators, foreign_key: :scorecard_uuid

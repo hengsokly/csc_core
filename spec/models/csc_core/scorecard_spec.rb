@@ -3,9 +3,10 @@ require 'rails_helper'
 module CscCore
   RSpec.describe Scorecard, type: :model do
     it { is_expected.to belong_to(:program) }
-    it { is_expected.to belong_to(:creator).class_name("User") }
+    it { is_expected.to belong_to(:creator).class_name("CscCore::User") }
+    it { is_expected.to belong_to(:completor).class_name("CscCore::User").optional }
     it { is_expected.to belong_to(:local_ngo).optional }
-    it { is_expected.to belong_to(:unit_type).class_name("Facility") }
+    it { is_expected.to belong_to(:unit_type).class_name("CscCore::Facility") }
     it { is_expected.to belong_to(:facility) }
     it { is_expected.to belong_to(:location).optional }
 
@@ -15,9 +16,6 @@ module CscCore
     it { is_expected.to have_many(:custom_indicators) }
     it { is_expected.to have_many(:raised_indicators) }
     it { is_expected.to have_many(:voting_indicators) }
-    it { is_expected.to have_many(:scorecard_progresses) }
-    it { is_expected.to have_many(:suggested_actions) }
-    it { is_expected.to have_many(:scorecard_references) }
 
     it { is_expected.to validate_presence_of(:year) }
     it { is_expected.to validate_presence_of(:unit_type_id) }
@@ -43,7 +41,7 @@ module CscCore
     end
 
     describe "validate #locked_scorecard" do
-      let!(:scorecard) { create(:scorecard, locked_at: DateTime.now) }
+      let!(:scorecard) { create(:scorecard, completed_at: DateTime.now) }
 
       it { expect(scorecard.update(name: "test")).to be_falsey }
 
@@ -57,26 +55,26 @@ module CscCore
       let!(:scorecard) { create(:scorecard) }
       before { scorecard.lock_access! }
 
-      it { expect(scorecard.locked_at).not_to be_nil }
+      it { expect(scorecard.completed_at).not_to be_nil }
     end
 
     describe "#unlock_access!" do
-      let!(:scorecard) { create(:scorecard, locked_at: Time.now.utc) }
+      let!(:scorecard) { create(:scorecard, completed_at: Time.now.utc) }
       before { scorecard.unlock_access! }
 
-      it { expect(scorecard.locked_at).to be_nil }
+      it { expect(scorecard.completed_at).to be_nil }
       it { expect(scorecard.update(name: "test")).to be_truthy }
     end
 
     describe "#access_locked?" do
       context "true" do
-        let!(:scorecard) { create(:scorecard, locked_at: Time.now.utc) }
+        let!(:scorecard) { create(:scorecard, completed_at: Time.now.utc) }
 
         it { expect(scorecard.access_locked?).to be_truthy }
       end
 
       context "false" do
-        let!(:scorecard) { create(:scorecard, locked_at: nil) }
+        let!(:scorecard) { create(:scorecard, completed_at: nil) }
 
         it { expect(scorecard.access_locked?).to be_falsey }
       end

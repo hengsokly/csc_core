@@ -4,6 +4,6 @@ FactoryBot.define do
     language
     language_code { language.code }
     rating_scale
-    audio         { Rack::Test::UploadedFile.new("./spec/fixtures/files/audio.mp3") }
+    audio         { Rack::Test::UploadedFile.new(fixture_attachment_path("audio.mp3")) }
   end
 end

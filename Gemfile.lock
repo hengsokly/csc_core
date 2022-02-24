@@ -12,7 +12,7 @@ PATH
       elasticsearch-model (~> 7.2.0)
       elasticsearch-rails (~> 7.2.0)
       fcm (~> 1.0.6)
-      fog-aws
+      fog-aws (~> 3.8.0)
       httparty (~> 0.19.0)
       ndjson (~> 1.0.0)
       omniauth-google-oauth2 (~> 1.0.0)

@@ -43,7 +43,7 @@ module CscCore
         let!(:suggested_indicator_activity) { create(:suggested_indicator_activity, voting_indicator: voting_indicator, scorecard: voting_indicator.scorecard, selected: true) }
         let(:t_head) {
           str = %w(indicator average_score strength weakness suggested_action).map { |col|
-            "<th class='text-center'>" + I18n.t("scorecard.#{col}") + "</th>"
+            "<th class='text-center'>" + I18n.t("interpreter.pdf_template.#{col}") + "</th>"
           }.join("")
 
           "<tr>#{str}</tr>"
@@ -55,7 +55,7 @@ module CscCore
           str += "<td class='text-center'>មិនពេញចិត្តខ្លាំង (1)</td>"
           str += "<td><ul><li>#{strength_indicator_activity.content} </li></ul></td>"
           str += "<td><ul><li>#{weakness_indicator_activity.content} </li></ul></td>"
-          str += "<td><ul><li>#{suggested_indicator_activity.content} (#{I18n.t('indicator.selected')})</li></ul></td>"
+          str += "<td><ul><li>#{suggested_indicator_activity.content} (#{I18n.t('interpreter.pdf_template.selected')})</li></ul></td>"
           str + "</tr>"
         }
 
