@@ -12,6 +12,7 @@ module CscCore
     belongs_to :program, optional: true
 
     scope :no_program, -> { where(program: nil) }
+    scope :system_contacts, -> { where(program: nil) }
 
     validates :contact_type, presence: true
     validates :value, presence: true
