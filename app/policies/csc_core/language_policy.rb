@@ -3,7 +3,7 @@
 module CscCore
   class LanguagePolicy < ApplicationPolicy
     def index?
-      user.program_admin?
+      user.program_admin? || user.staff? || user.lngo?
     end
 
     def create?
