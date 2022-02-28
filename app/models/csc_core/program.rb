@@ -8,6 +8,7 @@ module CscCore
     has_many :users
     has_many :languages
     has_many :facilities
+    has_many :indicators, through: :facilities
     has_many :templates
     has_many :local_ngos
     has_many :scorecards
@@ -48,6 +49,12 @@ module CscCore
 
     def update_dashboard
       Dashboard.new(self).update
+    end
+
+    def remove!(program_name)
+      raise "Program name does not match!" unless name == program_name
+
+      self.destroy!
     end
 
     private
