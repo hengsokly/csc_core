@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: programs
@@ -48,7 +50,7 @@ module CscCore
     DATETIME_FORMATS = {
       "YYYY-MM-DD" => "%Y-%m-%d",
       "DD-MM-YYYY" => "%d-%m-%Y"
-    }
+    }.freeze
 
     accepts_nested_attributes_for :rating_scales, allow_destroy: true
     accepts_nested_attributes_for :contacts, allow_destroy: true

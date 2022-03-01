@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: data_publications
@@ -8,7 +10,7 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 module CscCore
   RSpec.describe DataPublication, type: :model do
@@ -18,9 +20,9 @@ module CscCore
       let!(:program) { create(:program) }
 
       it "creates data_publication_log" do
-        expect {
+        expect do
           create(:data_publication, published_option: :publish_all, program: program)
-        }.to change {
+        end.to change {
           program.data_publication_logs.count
         }.by 1
       end
@@ -31,9 +33,9 @@ module CscCore
       let!(:data_publication) { create(:data_publication, published_option: :publish_all, program: program) }
 
       it "creates data_publication_log" do
-        expect {
+        expect do
           data_publication.update(published_option: :publish_from_today)
-        }.to change {
+        end.to change {
           program.data_publication_logs.count
         }.by 1
       end
@@ -45,9 +47,9 @@ module CscCore
       let!(:scorecard2) { create(:scorecard, program: program, published: false, created_at: Date.today) }
 
       context "publish_all" do
-        before {
+        before do
           create(:data_publication, published_option: :publish_all, program: program)
-        }
+        end
 
         it { expect(scorecard1.reload.published).to be_truthy }
         it { expect(scorecard2.reload.published).to be_truthy }

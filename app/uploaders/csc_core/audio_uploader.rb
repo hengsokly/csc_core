@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CscCore
   class AudioUploader < CarrierWave::Uploader::Base
     # Include RMagick or MiniMagick support:
@@ -40,7 +42,7 @@ module CscCore
     # Add an allowlist of extensions which are allowed to be uploaded.
     # For images you might use something like this:
     def extension_allowlist
-      %w(mp3)
+      %w[mp3]
     end
 
     # Override the filename of the uploaded files:

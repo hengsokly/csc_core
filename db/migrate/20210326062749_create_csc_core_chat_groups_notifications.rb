@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCscCoreChatGroupsNotifications < ActiveRecord::Migration[6.1]
   def change
     create_table :chat_groups_notifications do |t|

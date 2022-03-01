@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: language_rating_scales
@@ -11,7 +13,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 module CscCore
   RSpec.describe LanguageRatingScale, type: :model do

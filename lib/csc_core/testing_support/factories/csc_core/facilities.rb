@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :facility, class: "CscCore::Facility" do
     name_en        { FFaker::Name.name }
@@ -22,9 +24,9 @@ FactoryBot.define do
     end
 
     trait :dataset do
-      dataset     { "ps" }
+      dataset { "ps" }
 
-      before(:create) do |facility, evaluator|
+      before(:create) do |_facility, _evaluator|
         create(:primary_school)
       end
     end

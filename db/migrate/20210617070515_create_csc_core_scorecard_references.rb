@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCscCoreScorecardReferences < ActiveRecord::Migration[6.1]
   def change
     create_table :scorecard_references do |t|

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: activity_logs
@@ -16,7 +18,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 module CscCore
   RSpec.describe ActivityLog, type: :model do
@@ -87,9 +89,9 @@ module CscCore
       let(:user) { create(:user) }
       let!(:activity_log) { create(:activity_log, http_method: "GET", path: "/scorecards", user: user) }
 
-      before {
+      before do
         stub_const("ENV", { "ACTIVITY_LOGGABLE_PERIODIC_IN_MINUTE" => "5" })
-      }
+      end
 
       context "when ACTIVITY_LOG_PATHS is empty" do
         context "with GET request" do
@@ -98,9 +100,9 @@ module CscCore
           specify { expect(new_activity_log).to be_invalid }
           it "raises exception" do
             I18n.with_locale(:en) do
-              expect {
+              expect do
                 new_activity_log.save!
-              }.to raise_error(ActiveRecord::RecordInvalid, /Request duplicate/)
+              end.to raise_error(ActiveRecord::RecordInvalid, /Request duplicate/)
             end
           end
 
@@ -121,10 +123,10 @@ module CscCore
           specify { expect(new_activity_log).to be_valid }
 
           it "creates more than one" do
-            expect {
+            expect do
               ActivityLog.create(new_activity_log.attributes)
               ActivityLog.create(new_activity_log.attributes)
-            }.to change { ActivityLog.count }.by 2
+            end.to change { ActivityLog.count }.by 2
           end
         end
       end
@@ -132,9 +134,9 @@ module CscCore
       context "when ACTIVITY_LOG_PATHS is present" do
         let(:new_activity_log) { build(:activity_log, http_method: "GET", path: "/new-path", user: user) }
 
-        before {
+        before do
           stub_const("ENV", { "ACTIVITY_LOG_PATHS" => "scorecards" })
-        }
+        end
 
         specify { expect(new_activity_log).to be_invalid }
       end

@@ -10,8 +10,8 @@ module CscCore
       end
 
       def load(field)
-        if self.respond_to?(field.to_sym)
-          self.send(field.to_sym)
+        if respond_to?(field.to_sym)
+          send(field.to_sym)
         else
           return nil unless scorecard.respond_to?(field.to_sym)
           return render_date(field) if Scorecard.columns_hash[field].try(:type) == :datetime

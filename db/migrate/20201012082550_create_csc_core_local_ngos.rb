@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCscCoreLocalNgos < ActiveRecord::Migration[6.1]
   def change
     create_table :local_ngos do |t|
@@ -16,5 +18,3 @@ class CreateCscCoreLocalNgos < ActiveRecord::Migration[6.1]
     end
   end
 end
-
-

@@ -36,9 +36,9 @@ module CscCore
         end
 
         def build_profiles(voting_indicator)
-          profiles = [ { type: "female", avg_score: get_avg_score(voting_indicator, "female") } ]
+          profiles = [{ type: "female", avg_score: get_avg_score(voting_indicator, "female") }]
 
-          %w(disability minority poor_card youth).each do |type|
+          %w[disability minority poor_card youth].each do |type|
             profiles << { type: type, avg_score: get_avg_score(voting_indicator, type) }
           end
 
@@ -46,19 +46,20 @@ module CscCore
         end
 
         def get_avg_score(voting_indicator, type = "female")
-          ratings = voting_indicator.ratings.select { |rating|
+          ratings = voting_indicator.ratings.select do |rating|
             if type == "female"
-              !!rating.participant && rating.participant.gender == "female"
+              !rating.participant.nil? && rating.participant.gender == "female"
             else
-              !!rating.participant && rating.participant[type]
+              !rating.participant.nil? && rating.participant[type]
             end
-          }
+          end
 
           ratings.collect(&:score).mean.to_f.round_up_half
         end
 
         def voting_indicators
-          @voting_indicators ||= scorecard.voting_indicators.includes(:indicator, ratings: :participant).order(:display_order)
+          @voting_indicators ||= scorecard.voting_indicators.includes(:indicator,
+                                                                      ratings: :participant).order(:display_order)
         end
     end
   end

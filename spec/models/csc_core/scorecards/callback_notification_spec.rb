@@ -11,13 +11,13 @@ module CscCore
       context "milestone downloaded" do
         let(:message) { create(:message, milestone: "downloaded", program: program) }
 
-        before {
+        before do
           message.create_telegram_notification
           message.create_email_notification
 
           allow_any_instance_of(Program).to receive(:telegram_bot_enabled).and_return(true)
           allow_any_instance_of(Program).to receive(:enable_email_notification?).and_return(true)
-        }
+        end
 
         it { expect { scorecard.update(progress: "downloaded") }.to change(NotificationWorker.jobs, :size).by(2) }
       end

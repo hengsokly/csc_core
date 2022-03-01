@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCscCoreMobileNotifications < ActiveRecord::Migration[6.1]
   def change
     create_table :mobile_notifications do |t|

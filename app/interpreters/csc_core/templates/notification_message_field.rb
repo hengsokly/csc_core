@@ -17,7 +17,7 @@ module CscCore
           { name: "submitted_date", code: "scorecard.submitted_date" },
           { name: "completed_date", code: "scorecard.completed_date" },
           { name: "today", code: "date.today" },
-          { name: "scorecard_url", code: "scorecard.url" },
+          { name: "scorecard_url", code: "scorecard.url" }
         ]
       end
     end

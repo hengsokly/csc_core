@@ -20,7 +20,7 @@ WickedPdf.config = {
   # Layout file to be used for all PDFs
   # (but can be overridden in `render :pdf` calls)
   layout: "pdf.html",
-  margin:  { top: 16, bottom: 16, left: 16, right: 16 },
+  margin: { top: 16, bottom: 16, left: 16, right: 16 },
   orientation: "Landscape"
 
   # Using wkhtmltopdf without an X server can be achieved by enabling the

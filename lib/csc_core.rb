@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "core_ext/array"
 require "core_ext/float"
 

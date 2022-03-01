@@ -28,7 +28,7 @@ module CscCore
       end
 
       def build_row(scorecard)
-        scorecard.raised_indicators.sort_by { |ri| ri.participant_uuid }.each do |raised_indicator|
+        scorecard.raised_indicators.sort_by(&:participant_uuid).each do |raised_indicator|
           sheet.add_row generate_row(raised_indicator, scorecard)
         end
       end
@@ -39,7 +39,7 @@ module CscCore
             scorecard.uuid,
             raised_indicator.participant_uuid,
             raised_indicator.indicator_uuid,
-            raised_indicator.selected?,
+            raised_indicator.selected?
           ]
         end
     end

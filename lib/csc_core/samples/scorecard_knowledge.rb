@@ -5,9 +5,9 @@ module CscCore
     class ScorecardKnowledge < Base
       def self.load
         xlsx = Roo::Spreadsheet.open(file_path("scorecard_knowledges.xlsx"))
-        xlsx.each_with_pagename do |page_name, sheet|
+        xlsx.each_with_pagename do |_page_name, sheet|
           rows = sheet.parse(headers: true)
-          rows[1..-1].each_with_index do |row, index|
+          rows[1..-1].each_with_index do |row, _index|
             next unless row["code"].present?
 
             sk = CscCore::ScorecardKnowledge.find_or_create_by(code: row["code"])

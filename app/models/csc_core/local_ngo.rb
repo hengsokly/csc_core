@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: local_ngos
@@ -32,11 +34,11 @@ module CscCore
 
     before_save :set_target_provinces, if: :will_save_change_to_target_province_ids?
 
-    def address(address_local = "address_km")
+    def address(address_locale = "address_km")
       address_code = village_id.presence || commune_id.presence || district_id.presence || province_id.presence
       return if address_code.nil?
 
-      "Pumi::#{Location.location_kind(address_code).titlecase}".constantize.find_by_id(address_code).try("#{address_local}".to_sym)
+      "Pumi::#{Location.location_kind(address_code).titlecase}".constantize.find_by_id(address_code).try(address_locale.to_s.to_sym)
     end
 
     class << self
@@ -51,15 +53,20 @@ module CscCore
         def by_keyword(keyword, scope)
           return scope unless keyword.present?
 
-          province_ids = Pumi::Province.all.select { |p| p.name_km.downcase.include?(keyword.downcase) || p.name_en.downcase.include?(keyword.downcase) }.map(&:id)
+          province_ids = Pumi::Province.all.select do |p|
+            p.name_km.downcase.include?(keyword.downcase) || p.name_en.downcase.include?(keyword.downcase)
+          end.map(&:id)
 
-          scope.where("LOWER(name) LIKE ? OR LOWER(target_provinces) LIKE ? OR province_id IN (?)", "%#{keyword.downcase}%", "%#{keyword.downcase}%", province_ids)
+          scope.where("LOWER(name) LIKE ? OR LOWER(target_provinces) LIKE ? OR province_id IN (?)",
+                      "%#{keyword.downcase}%", "%#{keyword.downcase}%", province_ids)
         end
     end
 
     private
       def set_target_provinces
-        self.target_provinces = Pumi::Province.all.select { |p| target_province_ids.split(",").include?(p.id) }.sort_by { |x| x.id }.map(&:name_km).join(", ")
+        self.target_provinces = Pumi::Province.all.select do |p|
+          target_province_ids.split(",").include?(p.id)
+        end.sort_by(&:id).map(&:name_km).join(", ")
       end
   end
 end

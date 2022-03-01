@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Dir["#{CscCore::Engine.root}/lib/csc_core/builders/json_builders/*.rb"].each { |file| require file }
+Dir["#{CscCore::Engine.root}/lib/csc_core/builders/json_builders/*.rb"].sort.each { |file| require file }
 
 module CscCore
   class ScorecardJsonBuilder
@@ -36,13 +36,15 @@ module CscCore
         proposed_indicators: CscCore::JsonBuilder::ProposedIndicatorJsonBuilder.new(scorecard).build,
         indicator_developments: CscCore::JsonBuilder::IndicatorDevelopmentJsonBuilder.new(scorecard).build,
         votings: CscCore::JsonBuilder::VotingIndicatorJsonBuilder.new(scorecard).build,
-        result: CscCore::JsonBuilder::ResultJsonBuilder.new(scorecard).build,
+        result: CscCore::JsonBuilder::ResultJsonBuilder.new(scorecard).build
       }
     end
 
     private
       def build_geo_location
-        return nil unless scorecard.location.present? && scorecard.location.latitude.present? && scorecard.location.longitude.present?
+        unless scorecard.location.present? && scorecard.location.latitude.present? && scorecard.location.longitude.present?
+          return nil
+        end
 
         { lat: scorecard.location.latitude, lon: scorecard.location.longitude }
       end

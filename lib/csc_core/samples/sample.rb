@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-Dir["/app/lib/builders/*.rb"].each { |file| require file }
-Dir["/app/lib/exporters/*.rb"].each { |file| require file }
+Dir["/app/lib/builders/*.rb"].sort.each { |file| require file }
+Dir["/app/lib/exporters/*.rb"].sort.each { |file| require file }
 
 # References
 require_relative "base"

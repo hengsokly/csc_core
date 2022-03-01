@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: telegram_bots
@@ -29,7 +31,7 @@ module CscCore
         request = bot.set_webhook(url: ENV["TELEGRAM_CALLBACK_URL"])
 
         self.actived = request["ok"]
-      rescue
+      rescue StandardError
         self.actived = false
       end
     end

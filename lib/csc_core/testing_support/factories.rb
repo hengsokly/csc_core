@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def fixture_image_path(filename)
   "#{CscCore::Engine.root}/lib/csc_core/testing_support/fixtures/images/#{filename}"
 end

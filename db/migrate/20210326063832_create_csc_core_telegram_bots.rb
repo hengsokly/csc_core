@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCscCoreTelegramBots < ActiveRecord::Migration[6.1]
   def change
     create_table :telegram_bots do |t|

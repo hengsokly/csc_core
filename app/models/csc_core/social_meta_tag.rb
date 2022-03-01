@@ -5,7 +5,7 @@ module CscCore
     def self.to_meta_tags
       {
         og: {
-          title:  I18n.t("meta_tags.title"),
+          title: I18n.t("meta_tags.title"),
           site_name: I18n.t("meta_tags.site"),
           type: "website",
           description: I18n.t("meta_tags.description"),
@@ -18,13 +18,12 @@ module CscCore
           card: "summary",
           description: I18n.t("meta_tags.description"),
           image: helper.image_url("csc_logo.png")
-        },
+        }
       }
     end
 
-    private
-      def self.helper
-        ActionController::Base.helpers
-      end
+    def self.helper
+      ActionController::Base.helpers
+    end
   end
 end

@@ -88,6 +88,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "shoulda-matchers", "~> 4.0"
 
   spec.add_development_dependency "annotate", "~> 3.2.0"
+  spec.add_development_dependency "rubocop-performance", "~> 1.13.2"
+  spec.add_development_dependency "rubocop-rails", "~> 2.13.2"
 
   spec.add_development_dependency "byebug"
 end

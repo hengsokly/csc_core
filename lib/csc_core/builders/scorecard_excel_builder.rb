@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-Dir["#{CscCore::Engine.root}/lib/csc_core/builders/excel_builders/*.rb"].each { |file| require file }
+Dir["#{CscCore::Engine.root}/lib/csc_core/builders/excel_builders/*.rb"].sort.each { |file| require file }
 
 module CscCore
   class ScorecardExcelBuilder
@@ -10,7 +10,8 @@ module CscCore
     end
 
     def build
-      %w(ScorecardSummary Participant Indicator ProposedIndicator VotingSummary VotingDetail ScorecardResult).each do |klass_name|
+      %w[ScorecardSummary Participant Indicator ProposedIndicator VotingSummary VotingDetail
+         ScorecardResult].each do |klass_name|
         add_worksheet(klass_name)
       end
     end
@@ -23,9 +24,8 @@ module CscCore
         @workbook.add_worksheet(name: sheet_name) do |sheet|
           klass.new(sheet, @scorecards).build
         end
-
-        rescue
-          Rails.logger.warn "Unknown ExcelBuilder model #{klass}"
+      rescue StandardError
+        Rails.logger.warn "Unknown ExcelBuilder model #{klass}"
       end
   end
 end

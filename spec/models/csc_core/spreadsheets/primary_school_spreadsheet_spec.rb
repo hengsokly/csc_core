@@ -8,7 +8,10 @@ module CscCore
       let!(:ps_spreadsheet) { Spreadsheets::PrimarySchoolSpreadsheet.new }
 
       context "row with full info" do
-        let(:row) { { "commune_code" => "090101", "school_code" => "090101_1", "school_name_en" => "Andaung Teuk", "school_name_km" => "អណ្តូងទឹក" } }
+        let(:row) do
+          { "commune_code" => "090101", "school_code" => "090101_1", "school_name_en" => "Andaung Teuk",
+            "school_name_km" => "អណ្តូងទឹក" }
+        end
 
         it "creates a new valid record" do
           expect { ps_spreadsheet.process(row) }.to change { PrimarySchool.count }.from(0).to(1)
@@ -22,7 +25,10 @@ module CscCore
       end
 
       context "row with school_code" do
-        let(:row) { { "commune_code" => "090101", "school_code" => "090101_1", "school_name_en" => "Andaung Teuk", "school_name_km" => "អណ្តូងទឹក" } }
+        let(:row) do
+          { "commune_code" => "090101", "school_code" => "090101_1", "school_name_en" => "Andaung Teuk",
+            "school_name_km" => "អណ្តូងទឹក" }
+        end
 
         it "creates a new valid record" do
           expect { ps_spreadsheet.process(row) }.to change { PrimarySchool.count }.from(0).to(1)
@@ -36,7 +42,10 @@ module CscCore
       end
 
       context "row without school_code" do
-        let(:row) { { "commune_code" => "090101", "school_code" => "", "school_name_en" => "Andaung Teuk", "school_name_km" => "អណ្តូងទឹក" } }
+        let(:row) do
+          { "commune_code" => "090101", "school_code" => "", "school_name_en" => "Andaung Teuk",
+            "school_name_km" => "អណ្តូងទឹក" }
+        end
 
         it "creates a new valid record" do
           expect { ps_spreadsheet.process(row) }.to change { PrimarySchool.count }.from(0).to(1)
@@ -50,7 +59,10 @@ module CscCore
       end
 
       context "row without commune_code" do
-        let(:row) { { "commune_code" => "", "school_code" => "", "school_name_en" => "Andaung Teuk", "school_name_km" => "អណ្តូងទឹក" } }
+        let(:row) do
+          { "commune_code" => "", "school_code" => "", "school_name_en" => "Andaung Teuk",
+            "school_name_km" => "អណ្តូងទឹក" }
+        end
 
         it "doesn't create a record" do
           expect { ps_spreadsheet.process(row) }.to_not change(PrimarySchool, :count)
@@ -58,8 +70,14 @@ module CscCore
       end
 
       context "existing record" do
-        let!(:ps) { create(:primary_school, province_id: "09", district_id: "0901", commune_id: "090101", code: "090101_1", name_en: "Andaung Teuk", name_km: "អណ្តូងទឹក") }
-        let(:row) { { "commune_code" => "090101", "school_code" => "090101_1", "school_name_en" => "Andaung Teuk 1", "school_name_km" => "អណ្តូងទឹក 1" } }
+        let!(:ps) do
+          create(:primary_school, province_id: "09", district_id: "0901", commune_id: "090101", code: "090101_1",
+                                  name_en: "Andaung Teuk", name_km: "អណ្តូងទឹក")
+        end
+        let(:row) do
+          { "commune_code" => "090101", "school_code" => "090101_1", "school_name_en" => "Andaung Teuk 1",
+            "school_name_km" => "អណ្តូងទឹក 1" }
+        end
 
         it "updates the primary_school" do
           ps_spreadsheet.process(row)

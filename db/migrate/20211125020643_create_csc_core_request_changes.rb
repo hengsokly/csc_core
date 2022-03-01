@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCscCoreRequestChanges < ActiveRecord::Migration[6.1]
   def change
     create_table :request_changes, id: :uuid do |t|

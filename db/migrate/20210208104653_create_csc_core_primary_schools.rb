@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCscCorePrimarySchools < ActiveRecord::Migration[6.1]
   def change
     create_table :primary_schools do |t|

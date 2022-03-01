@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: notifications
@@ -10,7 +12,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 module CscCore
   RSpec.describe Notification, type: :model do
@@ -20,6 +22,9 @@ module CscCore
     it { is_expected.to have_many(:chat_groups).through(:chat_groups_notifications) }
 
     it { is_expected.to validate_presence_of(:provider) }
-    it { is_expected.to validate_inclusion_of(:provider).in_array(%w(CscCore::Notifications::Telegram CscCore::Notifications::Email)) }
+    it {
+      is_expected.to validate_inclusion_of(:provider).in_array(%w[CscCore::Notifications::Telegram
+                                                                  CscCore::Notifications::Email])
+    }
   end
 end

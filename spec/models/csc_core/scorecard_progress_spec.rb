@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: scorecard_progresses
@@ -10,12 +12,15 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 module CscCore
   RSpec.describe ScorecardProgress, type: :model do
     it { is_expected.to belong_to(:scorecard).with_foreign_key(:scorecard_uuid) }
-    it { is_expected.to define_enum_for(:status).with_values({ downloaded: 1, running: 2, renewed: 4, in_review: 3, completed: 5 }) }
+    it {
+      is_expected.to define_enum_for(:status).with_values({ downloaded: 1, running: 2, renewed: 4, in_review: 3,
+                                                            completed: 5 })
+    }
 
     describe "#after_save: set_scorecard_progress" do
       context "scorecard progress is smaller than scorecard_progress status" do
@@ -49,10 +54,10 @@ module CscCore
         let!(:scorecard) { create(:scorecard, progress: :running) }
         let(:scorecard_progress) { build(:scorecard_progress, status: :completed, scorecard: scorecard) }
 
-        before {
+        before do
           scorecard.lock_access!
           scorecard_progress.save
-        }
+        end
 
         it "set scorecard progress to completed" do
           expect(scorecard.reload.progress).to eq("completed")

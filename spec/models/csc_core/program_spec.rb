@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: programs
@@ -12,7 +14,7 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 module CscCore
   RSpec.describe Program, type: :model do
@@ -34,9 +36,9 @@ module CscCore
 
     describe "#after_create, create_dashboard_async" do
       it "adds a job to DashboardWorker" do
-        expect {
+        expect do
           create(:program, :allow_callback)
-        }.to change(DashboardWorker.jobs, :count)
+        end.to change(DashboardWorker.jobs, :count)
       end
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: cafs
@@ -16,7 +18,7 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 module CscCore
   RSpec.describe Caf, type: :model do
@@ -27,7 +29,7 @@ module CscCore
     it { is_expected.to have_many(:scorecards).through(:facilitators) }
 
     it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_inclusion_of(:sex).in_array(%w(female male other)).allow_nil }
+    it { is_expected.to validate_inclusion_of(:sex).in_array(%w[female male other]).allow_nil }
 
     describe "soft delete" do
       let(:caf) { create(:caf) }

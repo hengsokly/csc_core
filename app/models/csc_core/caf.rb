@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: cafs
@@ -31,7 +33,7 @@ module CscCore
     delegate :name, to: :educational_background, prefix: :educational_background, allow_nil: true
     delegate :name, to: :scorecard_knowledge, prefix: :scorecard_knowledge, allow_nil: true
 
-    GENDERS = %w(female male other)
+    GENDERS = %w[female male other].freeze
 
     validates :name, presence: true
     validates :sex, inclusion: { in: GENDERS }, allow_blank: true
@@ -40,7 +42,10 @@ module CscCore
 
     def self.filter(params)
       scope = all
-      scope = scope.where("LOWER(name) LIKE ? OR tel LIKE ?", "%#{params[:keyword].downcase}%", "%#{params[:keyword].downcase}%") if params[:keyword].present?
+      if params[:keyword].present?
+        scope = scope.where("LOWER(name) LIKE ? OR tel LIKE ?", "%#{params[:keyword].downcase}%",
+                            "%#{params[:keyword].downcase}%")
+      end
       scope = scope.where(local_ngo_id: params[:local_ngo_id]) if params[:local_ngo_id].present?
       scope
     end

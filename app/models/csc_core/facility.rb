@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: facilities
@@ -34,11 +36,11 @@ module CscCore
     validates :name_en, presence: true
     validates :name_km, presence: true
     validates :code, presence: true
-    validates :dataset, presence: true, if: -> { self.has_child }
+    validates :dataset, presence: true, if: -> { has_child }
 
     DATASETS = [
       { code: "ps", name_en: "Primary School", name_km: "បឋមសិក្សា", dataset: "PrimarySchool" }
-    ]
+    ].freeze
 
     def has_child
       @has_child == "on" || dataset.present?
@@ -49,7 +51,7 @@ module CscCore
     end
 
     def locked?
-      self.default? || self.unit_scorecards.present? || self.scorecards.present?
+      default? || unit_scorecards.present? || scorecards.present?
     end
   end
 end

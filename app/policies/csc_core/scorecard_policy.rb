@@ -10,6 +10,7 @@ module CscCore
       return true if user.system_admin?
       return true if (user.program_admin? || user.staff?) && (user.program_id == record.program_id)
       return true if user.local_ngo_id == record.local_ngo_id
+
       false
     end
 
@@ -34,7 +35,7 @@ module CscCore
     end
 
     def destroy?
-      create? && !%w(running downloaded).include?(record.progress)
+      create? && !%w[running downloaded].include?(record.progress)
     end
 
     def setting?
@@ -42,7 +43,7 @@ module CscCore
     end
 
     def request_change?
-      user.lngo? || (create? && record.request_changes.length > 0)
+      user.lngo? || (create? && record.request_changes.length.positive?)
     end
 
     def in_review?

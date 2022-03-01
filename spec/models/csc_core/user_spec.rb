@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -32,7 +34,7 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 module CscCore
   RSpec.describe User, type: :model do
@@ -75,19 +77,19 @@ module CscCore
       let!(:user) { create(:user) }
 
       context "token is expired" do
-        before {
+        before do
           user.update(authentication_token: "a1b2c3d4", token_expired_date: DateTime.yesterday)
           user.regenerate_authentication_token!
-        }
+        end
 
         it { expect(user.reload.authentication_token).not_to eq("a1b2c3d4") }
       end
 
       context "token is not expired" do
-        before {
+        before do
           user.update(authentication_token: "a1b2c3d4", token_expired_date: DateTime.tomorrow)
           user.regenerate_authentication_token!
-        }
+        end
 
         it { expect(user.reload.authentication_token).to eq("a1b2c3d4") }
       end
@@ -97,10 +99,10 @@ module CscCore
       let!(:user) { create(:user, email: "oren@email.com") }
       let(:new_user) { user.dup }
 
-      before {
+      before do
         user.destroy
         new_user.valid?
-      }
+      end
 
       it { expect(new_user.valid?).to be_falsey }
 

@@ -13,7 +13,8 @@ module CscCore
       def build
         build_header
 
-        @scorecards.includes(:local_ngo, :participants, :raised_indicators, :voting_indicators, :suggested_indicator_activities).each do |scorecard|
+        @scorecards.includes(:local_ngo, :participants, :raised_indicators, :voting_indicators,
+                             :suggested_indicator_activities).each do |scorecard|
           build_row(scorecard)
         end
       end
@@ -62,8 +63,8 @@ module CscCore
             scorecard.local_ngo_name,
             scorecard.number_of_participant,
             scorecard.number_of_female,
-            scorecard.participants.select { |p| p.gender == CscCore::Participant::GENDER_MALE}.length,
-            scorecard.participants.select { |p| p.gender == CscCore::Participant::GENDER_OTHER}.length,
+            scorecard.participants.select { |p| p.gender == CscCore::Participant::GENDER_MALE }.length,
+            scorecard.participants.select { |p| p.gender == CscCore::Participant::GENDER_OTHER }.length,
             scorecard.number_of_youth,
             scorecard.number_of_ethnic_minority,
             scorecard.number_of_disability,
@@ -71,7 +72,7 @@ module CscCore
             scorecard.raised_indicators.pluck(:indicator_uuid).uniq.length,
             scorecard.voting_indicators.length,
             scorecard.suggested_indicator_activities.length,
-            scorecard.suggested_indicator_activities.select { |act| act.selected? }.length
+            scorecard.suggested_indicator_activities.select(&:selected?).length
           ]
         end
 

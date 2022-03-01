@@ -12,7 +12,7 @@ module CscCore
       def self.export(type = "json")
         class_name = "Exporters::#{type.camelcase}Exporter"
         class_name.constantize.new(CscCore::PrimarySchool.all).export("primary_schools")
-      rescue
+      rescue StandardError
         Rails.logger.warn "#{class_name} is unknwon"
       end
     end

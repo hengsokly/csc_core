@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: indicator_activities
@@ -21,7 +23,7 @@ module CscCore
     default_scope { order(created_at: :asc) }
     scope :selecteds, -> { where(selected: true) }
 
-    # Todo: after interim period of v1 and v2, it should be removed
+    # TODO: after interim period of v1 and v2, it should be removed
     after_validation :secure_uniqness
 
     def self.inherited(child)

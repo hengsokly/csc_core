@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class CreateCscCoreVotingIndicators < ActiveRecord::Migration[6.1]
   def change
     create_table :voting_indicators, id: false do |t|
-      t.string  :id
+      t.string :id
       t.primary_key :uuid, :string, default: "uuid_generate_v4()", null: false
       t.integer :indicatorable_id
       t.string  :indicatorable_type

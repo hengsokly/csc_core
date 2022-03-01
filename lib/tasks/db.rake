@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :db do
   desc "prepare to run the test"
   task test: :environment do

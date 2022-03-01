@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: request_changes
@@ -44,7 +46,9 @@ module CscCore
 
     validates :district_id, presence: true, if: -> { province_id.present? }
     validates :commune_id, presence: true, if: -> { province_id.present? }
-    validates :primary_school_code, presence: true, if: -> { province_id.present? && scorecard.facility.dataset.present? }
+    validates :primary_school_code, presence: true, if: lambda {
+                                                          province_id.present? && scorecard.facility.dataset.present?
+                                                        }
 
     before_validation :set_resolved_date, if: -> { approved? || rejected? }
     before_create :set_status
@@ -53,7 +57,7 @@ module CscCore
     default_scope { order(created_at: :desc) }
     scope :submitteds, -> { where(status: "submitted") }
 
-    def location_name(address = "address_km")
+    def location_name(_address = "address_km")
       return if commune_id.blank?
 
       "Pumi::#{Location.location_kind(commune_id).titlecase}".constantize.find_by_id(commune_id).try("address_#{I18n.locale}".to_sym)
@@ -67,11 +71,17 @@ module CscCore
       def scorecard_param
         params = {}
         params[:year] = year if year.present? && scorecard.year != year
-        params[:scorecard_type] = scorecard_type if scorecard_type.present? && scorecard.scorecard_type != scorecard_type
+        if scorecard_type.present? && scorecard.scorecard_type != scorecard_type
+          params[:scorecard_type] =
+            scorecard_type
+        end
         params[:province_id] = province_id if province_id.present? && scorecard.province_id != province_id
         params[:district_id] = district_id if district_id.present? && scorecard.district_id != district_id
         params[:commune_id] = commune_id if commune_id.present? && scorecard.commune_id != commune_id
-        params[:primary_school_code] = primary_school_code if primary_school_code.present? && scorecard.primary_school_code != primary_school_code
+        if primary_school_code.present? && scorecard.primary_school_code != primary_school_code
+          params[:primary_school_code] =
+            primary_school_code
+        end
         params
       end
 

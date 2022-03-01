@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCscCoreCustomIndicators < ActiveRecord::Migration[6.1]
   def change
     create_table :custom_indicators do |t|

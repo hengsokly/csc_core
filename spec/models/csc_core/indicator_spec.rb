@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: indicators
@@ -15,7 +17,7 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 module CscCore
   RSpec.describe Indicator, type: :model do
@@ -24,7 +26,7 @@ module CscCore
     it { is_expected.to have_many(:languages).through(:languages_indicators) }
 
     it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_uniqueness_of(:name).scoped_to([:categorizable_id, :categorizable_type]) }
+    it { is_expected.to validate_uniqueness_of(:name).scoped_to(%i[categorizable_id categorizable_type]) }
 
     it "should touch the categorizable" do
       indicator = build(:indicator)

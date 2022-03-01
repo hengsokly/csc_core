@@ -14,17 +14,17 @@ module CscCore
 
       context "approved" do
         it {
-          expect {
+          expect do
             request_change.update(status: :approved, reviewer: reviewer)
-          }.to change(RequestChangeWorker.jobs, :size).by(1)
+          end.to change(RequestChangeWorker.jobs, :size).by(1)
         }
       end
 
       context "rejected" do
         it {
-          expect {
+          expect do
             request_change.update(status: :rejected, reviewer: reviewer, rejected_reason: "I reject it")
-          }.to change(RequestChangeWorker.jobs, :size).by(1)
+          end.to change(RequestChangeWorker.jobs, :size).by(1)
         }
       end
     end

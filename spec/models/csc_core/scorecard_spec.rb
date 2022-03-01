@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: scorecards
@@ -45,7 +47,7 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 module CscCore
   RSpec.describe Scorecard, type: :model do
@@ -74,7 +76,7 @@ module CscCore
     it { is_expected.to validate_presence_of(:planned_end_date) }
 
     describe "#secure_uuid" do
-      let!(:uuid) { SecureRandom.random_number(1..999999).to_s.rjust(6, "0") }
+      let!(:uuid) { SecureRandom.random_number(1..999_999).to_s.rjust(6, "0") }
       let!(:scorecard1) { create(:scorecard, uuid: uuid) }
       let!(:scorecard2) { create(:scorecard, uuid: uuid) }
 
@@ -131,25 +133,31 @@ module CscCore
       let!(:local_ngo) { create(:local_ngo) }
 
       context "before planned_start_date" do
-        let(:scorecard)  { build(:scorecard, local_ngo: local_ngo, planned_start_date: Date.yesterday, planned_end_date: Date.today) }
+        let(:scorecard) do
+          build(:scorecard, local_ngo: local_ngo, planned_start_date: Date.yesterday, planned_end_date: Date.today)
+        end
 
         it { expect(scorecard.valid?).to be_truthy }
       end
 
       context "equal to planned_start_date" do
-        let(:scorecard)  { build(:scorecard, local_ngo: local_ngo, planned_start_date: Date.today, planned_end_date: Date.today) }
+        let(:scorecard) do
+          build(:scorecard, local_ngo: local_ngo, planned_start_date: Date.today, planned_end_date: Date.today)
+        end
 
         it { expect(scorecard.valid?).to be_truthy }
       end
 
       context "after planned_start_date" do
-        let(:scorecard)  { build(:scorecard, local_ngo: local_ngo, planned_start_date: Date.tomorrow, planned_end_date: Date.today) }
+        let(:scorecard) do
+          build(:scorecard, local_ngo: local_ngo, planned_start_date: Date.tomorrow, planned_end_date: Date.today)
+        end
 
         it { expect(scorecard.valid?).to be_falsey }
 
         it "raises errors" do
           scorecard.valid?
-          expect(scorecard.errors.include? :planned_end_date)
+          expect(scorecard.errors.include?(:planned_end_date))
         end
       end
     end
@@ -165,27 +173,27 @@ module CscCore
       end
 
       context "program data_published_option is stop_publish_data" do
-        before {
+        before do
           create(:data_publication, published_option: :stop_publish_data, program: program)
-        }
+        end
 
         it { expect(scorecard1.published).to be_falsey }
         it { expect(scorecard2.published).to be_falsey }
       end
 
       context "program data_published_option is publish_all" do
-        before {
+        before do
           create(:data_publication, published_option: :publish_all, program: program)
-        }
+        end
 
         it { expect(scorecard1.published).to be_falsey }
         it { expect(scorecard2.published).to be_truthy }
       end
 
       context "program data_published_option is publish_from_today" do
-        before {
+        before do
           create(:data_publication, published_option: :publish_from_today, program: program)
-        }
+        end
 
         it { expect(scorecard1.reload.published).to be_falsey }
         it { expect(scorecard2.reload.published).to be_truthy }

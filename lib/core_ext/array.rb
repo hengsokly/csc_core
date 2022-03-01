@@ -2,17 +2,17 @@
 
 class Array
   def median
-    return if self.empty?
-    raise "requires all number" if !self.all?(Numeric)
+    return if empty?
+    raise "requires all number" unless all?(Numeric)
 
-    sorted = self.sort
+    sorted = sort
     len = sorted.length
     (sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0
   end
 
   def mean
-    return if self.empty?
+    return if empty?
 
-    self.sum / size
+    sum / size
   end
 end

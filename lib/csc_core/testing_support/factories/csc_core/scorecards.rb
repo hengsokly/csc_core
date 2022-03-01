@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-  factory :scorecard, class: 'CscCore::Scorecard' do
+  factory :scorecard, class: "CscCore::Scorecard" do
     year         { Date.today.year }
     facility     { create(:facility, :with_parent) }
     unit_type_id { facility.parent_id }
     program
     creator
     local_ngo
-    status       { "" }
+    status { "" }
     scorecard_type { CscCore::Scorecard::SCORECARD_TYPES.sample.last }
     commune_id   { Pumi::Commune.all.sample.id }
     district_id  { Pumi::Commune.find_by_id(commune_id).try(:district_id) }

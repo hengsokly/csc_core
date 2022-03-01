@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCscCoreMobileTokens < ActiveRecord::Migration[6.1]
   def change
     create_table :mobile_tokens do |t|

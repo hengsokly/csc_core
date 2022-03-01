@@ -13,10 +13,10 @@ module CscCore
       data = load_json_data("dashboard.json")
       assign_uid(data)
 
-      %w(panel variable).each do |model|
+      %w[panel variable].each do |model|
         "CscCore::Dashboards::#{model.camelcase}Interpreter".constantize.new(program, data).interpret
-        rescue
-          Rails.logger.warn "Model #{model} is unknwon"
+      rescue StandardError
+        Rails.logger.warn "Model #{model} is unknwon"
       end
 
       data

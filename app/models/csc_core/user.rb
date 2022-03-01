@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -60,7 +62,7 @@ module CscCore
       ["Admin", "program_admin"],
       ["Staff/Officer", "staff"],
       ["Lngo", "lngo"]
-    ]
+    ].freeze
 
     # Association
     belongs_to :program, optional: true
@@ -105,12 +107,11 @@ module CscCore
 
     def self.from_omniauth(access_token)
       data = access_token.info
-      user = User.where(email: data["email"]).first
-      user
+      User.where(email: data["email"]).first
     end
 
     def self.from_authentication_token(token)
-      self.where(authentication_token: token).where("token_expired_date >= ?", Time.zone.now).first
+      where(authentication_token: token).where("token_expired_date >= ?", Time.zone.now).first
     end
 
     # Instant methods
@@ -118,7 +119,7 @@ module CscCore
       return if token_expired_date > Time.zone.now
 
       generate_authentication_token
-      self.save
+      save
     end
 
     def display_name
@@ -135,18 +136,18 @@ module CscCore
     end
 
     def active_for_authentication?
-      super and self.actived?
+      super and actived?
     end
 
     private
       def generate_authentication_token
         self.encrypted_password ||= ""
         self.authentication_token = Devise.friendly_token
-        self.token_expired_date = (ENV.fetch("TOKEN_EXPIRED_IN_DAY") { 1 }).to_i.day.from_now
+        self.token_expired_date = ENV.fetch("TOKEN_EXPIRED_IN_DAY", 1).to_i.day.from_now
       end
 
       def validate_archived_email
-        if self.class.only_deleted.where(email: email).length > 0
+        if self.class.only_deleted.where(email: email).length.positive?
           errors.add :email, :uniqueness, message: I18n.t("user.is_being_archived")
         end
       end

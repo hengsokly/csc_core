@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-  factory :location, class: 'CscCore::Location' do
+  factory :location, class: "CscCore::Location" do
     code { "01" }
     name_en { "Banteay Meanchey" }
     name_km { "បន្ទាយមានជ័យ" }

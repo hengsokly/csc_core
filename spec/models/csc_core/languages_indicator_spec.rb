@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: languages_indicators
@@ -12,7 +14,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 module CscCore
   RSpec.describe LanguagesIndicator, type: :model do
@@ -30,9 +32,9 @@ module CscCore
     describe "#before update, #increase_version" do
       let!(:languages_indicator) { create(:languages_indicator) }
 
-      before {
+      before do
         languages_indicator.update(content: "Working on time")
-      }
+      end
 
       it { expect(languages_indicator.version).to eq(1) }
     end

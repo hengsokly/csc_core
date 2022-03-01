@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: local_ngos
@@ -16,7 +18,7 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 module CscCore
   RSpec.describe LocalNgo, type: :model do
