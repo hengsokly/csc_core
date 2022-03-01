@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: ratings
+#
+#  id                    :string
+#  uuid                  :string           default("uuid_generate_v4()"), not null, primary key
+#  score                 :integer
+#  scorecard_uuid        :string
+#  voting_indicator_uuid :string
+#  participant_uuid      :string
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#
 module CscCore
   class Rating < ApplicationRecord
     self.table_name = "ratings"

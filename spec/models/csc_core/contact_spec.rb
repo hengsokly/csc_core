@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: contacts
+#
+#  id           :bigint           not null, primary key
+#  contact_type :integer
+#  value        :string
+#  program_id   :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
 require 'rails_helper'
 
 module CscCore

@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: scorecard_progresses
+#
+#  id             :bigint           not null, primary key
+#  scorecard_uuid :string
+#  status         :integer
+#  device_id      :string
+#  user_id        :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
 module CscCore
   class ScorecardProgress < ApplicationRecord
     self.table_name = "scorecard_progresses"

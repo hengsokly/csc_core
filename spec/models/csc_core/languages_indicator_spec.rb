@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: languages_indicators
+#
+#  id            :bigint           not null, primary key
+#  language_id   :integer
+#  language_code :string
+#  indicator_id  :integer
+#  content       :string
+#  audio         :string
+#  version       :integer          default(0)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
 require 'rails_helper'
 
 module CscCore

@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: activity_logs
+#
+#  id              :bigint           not null, primary key
+#  controller_name :string
+#  action_name     :string
+#  http_format     :string
+#  http_method     :string
+#  path            :string
+#  http_status     :integer
+#  user_id         :bigint
+#  program_id      :bigint
+#  payload         :json
+#  remote_ip       :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
 module CscCore
   class ActivityLog < ApplicationRecord
     self.table_name = "activity_logs"

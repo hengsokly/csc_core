@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "lib/csc_core/version"
 
 Gem::Specification.new do |spec|
@@ -24,9 +26,9 @@ Gem::Specification.new do |spec|
 
   # Oauth
   spec.add_dependency "devise", "~> 4.8.1"
-  spec.add_dependency "omniauth-rails_csrf_protection", "~> 1.0.0"
-  spec.add_dependency "omniauth-google-oauth2", "~> 1.0.0"
   spec.add_dependency "doorkeeper", "~> 5.5.2"
+  spec.add_dependency "omniauth-google-oauth2", "~> 1.0.0"
+  spec.add_dependency "omniauth-rails_csrf_protection", "~> 1.0.0"
 
   # Soft delete
   spec.add_dependency "paranoia", "~> 2.4.3"
@@ -55,9 +57,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "httparty", "~> 0.19.0"
 
   # Excel read, write
-  spec.add_dependency "roo", "~> 2.8.3"
   spec.add_dependency "caxlsx", "~> 3.1.1"
   spec.add_dependency "caxlsx_rails", "~> 0.6.2"
+  spec.add_dependency "roo", "~> 2.8.3"
 
   # Permission
   spec.add_dependency "pundit", "~> 2.1.0"
@@ -78,12 +80,14 @@ Gem::Specification.new do |spec|
   spec.add_dependency "ndjson", "~> 1.0.0"
 
   # Spec
-  spec.add_development_dependency "rspec-rails", "~> 5.0.0"
+  spec.add_development_dependency "database_cleaner"
   spec.add_development_dependency "factory_bot_rails", "~> 6.2.0"
   spec.add_development_dependency "ffaker", "~> 2.17.0"
-  spec.add_development_dependency "shoulda-matchers", "~> 4.0"
-  spec.add_development_dependency "database_cleaner"
+  spec.add_development_dependency "rspec-rails", "~> 5.0.0"
   spec.add_development_dependency "rspec-sidekiq", "~> 3.1.0"
+  spec.add_development_dependency "shoulda-matchers", "~> 4.0"
+
+  spec.add_development_dependency "annotate", "~> 3.2.0"
 
   spec.add_development_dependency "byebug"
 end

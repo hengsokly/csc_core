@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: scorecard_references
+#
+#  id             :bigint           not null, primary key
+#  uuid           :string
+#  scorecard_uuid :string
+#  attachment     :string
+#  kind           :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
 module CscCore
   class ScorecardReference < ApplicationRecord
     self.table_name = "scorecard_references"

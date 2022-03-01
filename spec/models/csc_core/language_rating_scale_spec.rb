@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: language_rating_scales
+#
+#  id              :bigint           not null, primary key
+#  rating_scale_id :integer
+#  language_id     :integer
+#  language_code   :string
+#  audio           :string
+#  content         :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
 require 'rails_helper'
 
 module CscCore

@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: primary_schools
+#
+#  id          :bigint           not null, primary key
+#  code        :string
+#  name_en     :string
+#  name_km     :string
+#  commune_id  :string
+#  district_id :string
+#  province_id :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 module CscCore
   class PrimarySchool < ApplicationRecord
     self.table_name = "primary_schools"
