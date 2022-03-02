@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CscCore
   class Programs::PdfTemplateService
     attr_reader :program

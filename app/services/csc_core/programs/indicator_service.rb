@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CscCore
   class Programs::IndicatorService
     attr_reader :program

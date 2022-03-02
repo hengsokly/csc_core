@@ -40,6 +40,7 @@ module CscCore
     has_many :data_publication_logs, dependent: :destroy
     has_one  :telegram_bot, dependent: :destroy
     has_one  :gf_dashboard
+    has_one  :quota, dependent: :destroy
 
     validates :name, presence: true, uniqueness: true
     validates :shortcut_name, presence: true, uniqueness: true
@@ -56,9 +57,24 @@ module CscCore
     accepts_nested_attributes_for :rating_scales, allow_destroy: true
     accepts_nested_attributes_for :contacts, allow_destroy: true
     accepts_nested_attributes_for :telegram_bot, allow_destroy: true
+    accepts_nested_attributes_for :quota, allow_destroy: true
     accepts_nested_attributes_for :data_publication, allow_destroy: true
 
     delegate :enabled, to: :telegram_bot, prefix: :telegram_bot, allow_nil: true
+
+    def quota
+      super || build_quota
+    end
+
+    def quota_expired?
+      !quota.unlimited? && scorecards.length == quota.quantity
+    end
+
+    def quota_warning?
+      return false if quota.unlimited? || scorecards.length == quota.quantity
+
+      scorecards.length >= (quota.quantity * 0.7).floor
+    end
 
     def create_dashboard
       Dashboard.new(self).create

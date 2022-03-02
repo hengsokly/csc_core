@@ -6,7 +6,7 @@ module CscCore
   RSpec.describe Programs::FacilityService do
     let!(:program1)  { create(:program, :allow_callback) }
     let!(:facility1) { create(:facility, program: program1) }
-    let!(:program2)  { create(:program, name: 'World Vision', shortcut_name: 'WVI')}
+    let!(:program2)  { create(:program, name: "World Vision", shortcut_name: "WVI") }
     let(:service)    { Programs::FacilityService.new(program2.id) }
 
     describe "#clone_from_program" do
