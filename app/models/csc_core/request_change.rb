@@ -1,3 +1,24 @@
+# == Schema Information
+#
+# Table name: request_changes
+#
+#  id                  :uuid             not null, primary key
+#  scorecard_uuid      :string
+#  proposer_id         :integer
+#  reviewer_id         :integer
+#  year                :string
+#  scorecard_type      :integer
+#  province_id         :string
+#  district_id         :string
+#  commune_id          :string
+#  primary_school_code :string
+#  changed_reason      :text
+#  rejected_reason     :text
+#  status              :integer
+#  resolved_date       :datetime
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#
 module CscCore
   class RequestChange < ApplicationRecord
     self.table_name = "request_changes"

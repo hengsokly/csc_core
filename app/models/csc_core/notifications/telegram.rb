@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: notifications
+#
+#  id         :bigint           not null, primary key
+#  provider   :string
+#  emails     :text             default([]), is an Array
+#  message_id :integer
+#  program_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 module CscCore
   module Notifications
     class Telegram < ::CscCore::Notification

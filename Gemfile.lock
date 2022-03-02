@@ -93,6 +93,9 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    annotate (3.2.0)
+      activerecord (>= 3.2, < 8.0)
+      rake (>= 10.4, < 14.0)
     awesome_nested_set (3.2.1)
       activerecord (>= 4.0.0, < 7.0)
     bcrypt (3.1.16)
@@ -384,6 +387,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate (~> 3.2.0)
   byebug
   csc_core!
   database_cleaner

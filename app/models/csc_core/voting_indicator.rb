@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: voting_indicators
+#
+#  id                 :string
+#  uuid               :string           default("uuid_generate_v4()"), not null, primary key
+#  indicatorable_id   :integer
+#  indicatorable_type :string
+#  scorecard_uuid     :string
+#  median             :integer
+#  strength           :text
+#  weakness           :text
+#  suggested_action   :text
+#  display_order      :integer
+#  indicator_uuid     :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#
 module CscCore
   class VotingIndicator < ApplicationRecord
     self.table_name = "voting_indicators"

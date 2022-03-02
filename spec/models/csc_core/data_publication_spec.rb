@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: data_publications
+#
+#  id               :uuid             not null, primary key
+#  program_id       :integer
+#  published_option :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
 require 'rails_helper'
 
 module CscCore

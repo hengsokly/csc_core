@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: cafs
+#
+#  id                        :bigint           not null, primary key
+#  name                      :string
+#  sex                       :string
+#  date_of_birth             :string
+#  tel                       :string
+#  address                   :string
+#  local_ngo_id              :integer
+#  actived                   :boolean          default(TRUE)
+#  educational_background_id :string
+#  scorecard_knowledge_id    :string
+#  deleted_at                :datetime
+#  created_at                :datetime         not null
+#  updated_at                :datetime         not null
+#
 module CscCore
   class Caf < ApplicationRecord
     self.table_name = "cafs"

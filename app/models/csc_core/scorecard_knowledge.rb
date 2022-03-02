@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: scorecard_knowledges
+#
+#  id         :bigint           not null, primary key
+#  code       :string
+#  name_en    :string
+#  name_km    :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 module CscCore
   class ScorecardKnowledge < ApplicationRecord
     self.table_name = "scorecard_knowledges"

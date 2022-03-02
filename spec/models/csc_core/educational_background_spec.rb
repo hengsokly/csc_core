@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: educational_backgrounds
+#
+#  id         :bigint           not null, primary key
+#  code       :string
+#  name_en    :string
+#  name_km    :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 require 'rails_helper'
 
 module CscCore
