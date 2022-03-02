@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: activity_logs
@@ -20,14 +22,16 @@ module CscCore
   class ActivityLog < ApplicationRecord
     self.table_name = "activity_logs"
 
-    extend ActivityLog::RoledScope
+    extend ActivityLogs::RoledScope
 
     belongs_to :user
     belongs_to :program, optional: true
 
     default_scope { order(created_at: :desc) }
-    scope :query, -> (query) { where(" path ILIKE :query OR remote_ip ILIKE :query OR
-                                        users.email ILIKE :query OR programs.name ILIKE :query", query: "%#{query}%") }
+    scope :query, lambda { |query|
+                    where(" path ILIKE :query OR remote_ip ILIKE :query OR
+                                        users.email ILIKE :query OR programs.name ILIKE :query", query: "%#{query}%")
+                  }
 
     delegate :role, to: :user, prefix: true
     delegate :name, to: :program, prefix: true, allow_nil: true
@@ -63,9 +67,7 @@ module CscCore
       end
 
       def ensure_path_included_in_whitelist
-        unless whitelist?
-          errors.add(:path, I18n.t("activity_logs.whitelist_path"))
-        end
+        errors.add(:path, I18n.t("activity_logs.whitelist_path")) unless whitelist?
       end
 
       def whitelist?
@@ -84,9 +86,9 @@ module CscCore
 
       def activity_exists?
         self.class\
-          .where(path: path, remote_ip: remote_ip, user: user)
-          .where("created_at > ?", loggable_period)
-          .exists?
+            .where(path: path, remote_ip: remote_ip, user: user)
+            .where("created_at > ?", loggable_period)
+            .exists?
       end
 
       def loggable_period

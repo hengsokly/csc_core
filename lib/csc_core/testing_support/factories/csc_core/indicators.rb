@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-  factory :indicator, class: 'CscCore::Indicator' do
+  factory :indicator, class: "CscCore::Indicator" do
     categorizable   { create(:facility) }
     # tag
     name            { FFaker::Name.name }

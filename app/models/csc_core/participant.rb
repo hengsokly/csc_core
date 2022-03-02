@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: participants
@@ -22,7 +24,7 @@ module CscCore
 
     before_create :secure_uuid
 
-    GENDERS=%w(female male other)
+    GENDERS = %w[female male other].freeze
     GENDER_MALE = "male"
     GENDER_FEMALE = "female"
     GENDER_OTHER = "other"

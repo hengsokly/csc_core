@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class CreateCscCoreParticipants < ActiveRecord::Migration[6.1]
   def change
     create_table :participants, id: false do |t|
-      t.string  :id
+      t.string :id
       t.primary_key :uuid, :string
       t.string  :scorecard_uuid
       t.integer :age

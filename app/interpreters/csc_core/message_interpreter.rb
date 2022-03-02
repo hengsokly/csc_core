@@ -14,7 +14,7 @@ module CscCore
 
       sms = message
       embeded_fields.each do |embeded_field|
-        sms = sms.gsub(/#{"{{" + embeded_field + "}}"}/, get_field_value(embeded_field).to_s)
+        sms = sms.gsub(/#{"{{#{embeded_field}}}"}/, get_field_value(embeded_field).to_s)
       end
       sms
     end
@@ -26,9 +26,9 @@ module CscCore
         value = "CscCore::Messages::#{model.camelcase}Interpreter".constantize.new(scorecard).load(field)
 
         "<b>#{value}</b>"
-        rescue
-          Rails.logger.warn "Model #{model} and field #{field} is unknwon"
-          ""
+      rescue StandardError
+        Rails.logger.warn "Model #{model} and field #{field} is unknwon"
+        ""
       end
 
       def embeded_fields

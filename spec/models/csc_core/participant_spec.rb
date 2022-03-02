@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: participants
@@ -14,7 +16,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 module CscCore
   RSpec.describe Participant, type: :model do

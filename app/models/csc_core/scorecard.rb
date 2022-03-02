@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: scorecards
@@ -118,7 +120,7 @@ module CscCore
     before_create :set_published
     before_save   :clear_primary_school_code, unless: -> { facility.try(:dataset).present? }
 
-    after_commit  :index_document_async, on: [:create, :update], if: -> { ENV["ELASTICSEARCH_ENABLED"] == "true" }
+    after_commit  :index_document_async, on: %i[create update], if: -> { ENV["ELASTICSEARCH_ENABLED"] == "true" }
     after_destroy :delete_document_async, if: -> { ENV["ELASTICSEARCH_ENABLED"] == "true" }
 
     accepts_nested_attributes_for :facilitators, allow_destroy: true
@@ -143,7 +145,7 @@ module CscCore
 
     # Class method
     def self.t_scorecard_types
-      self.scorecard_types.keys.map { |key| [I18n.t("scorecard.#{key}"), key] }
+      scorecard_types.keys.map { |key| [I18n.t("scorecard.#{key}"), key] }
     end
 
     private
@@ -157,7 +159,7 @@ module CscCore
       end
 
       def six_digit_rand
-        SecureRandom.random_number(1..999999).to_s.rjust(6, "0")
+        SecureRandom.random_number(1..999_999).to_s.rjust(6, "0")
       end
 
       def set_name

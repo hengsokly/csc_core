@@ -8,7 +8,7 @@ module CscCore
       end
 
       def load(field)
-        self.send(field.to_sym) if self.respond_to?(field.to_sym)
+        send(field.to_sym) if respond_to?(field.to_sym)
       end
 
       def today

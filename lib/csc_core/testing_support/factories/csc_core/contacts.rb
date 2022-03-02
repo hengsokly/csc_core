@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-  factory :contact, class: 'CscCore::Contact' do
+  factory :contact, class: "CscCore::Contact" do
     contact_type   { :tel }
     value          { FFaker::PhoneNumber.short_phone_number }
     program

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCscCorePdfTemplates < ActiveRecord::Migration[6.1]
   def change
     create_table :pdf_templates do |t|

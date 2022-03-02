@@ -13,7 +13,8 @@ module CscCore
       def build
         build_header
 
-        @scorecards.includes(voting_indicators: [:weakness_indicator_activities, :strength_indicator_activities, :suggested_indicator_activities]).find_each do |scorecard|
+        @scorecards.includes(voting_indicators: %i[weakness_indicator_activities strength_indicator_activities
+                                                   suggested_indicator_activities]).find_each do |scorecard|
           build_row(scorecard)
         end
       end

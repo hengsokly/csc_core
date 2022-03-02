@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-  factory :user, aliases: [:creator], class: 'CscCore::User' do
+  factory :user, aliases: [:creator], class: "CscCore::User" do
     email         { FFaker::Internet.email }
     password      { FFaker::Internet.password }
     role          { "program_admin" }

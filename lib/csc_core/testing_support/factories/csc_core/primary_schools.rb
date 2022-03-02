@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-  factory :primary_school, class: 'CscCore::PrimarySchool' do
+  factory :primary_school, class: "CscCore::PrimarySchool" do
     code       { FFaker::Code.npi }
     name_en    { FFaker::Name.name }
     name_km    { FFaker::Name.name }

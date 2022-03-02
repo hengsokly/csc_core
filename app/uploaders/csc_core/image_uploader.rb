@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CscCore
   class ImageUploader < CarrierWave::Uploader::Base
     # Include RMagick or MiniMagick support:

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: notifications
@@ -17,7 +19,7 @@ module CscCore
     self.table_name = "notifications"
     self.inheritance_column = :provider
 
-    PROVIDERS = %w(CscCore::Notifications::Telegram CscCore::Notifications::Email).freeze
+    PROVIDERS = %w[CscCore::Notifications::Telegram CscCore::Notifications::Email].freeze
 
     belongs_to :message
     has_one  :program, through: :message

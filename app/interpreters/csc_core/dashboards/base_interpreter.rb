@@ -6,7 +6,7 @@ module CscCore
       def gsub_program_id(program, str)
         return str unless str.present?
 
-        str.gsub(/\$\{program_id\}/, "#{program.id}")
+        str.gsub(/\$\{program_id\}/, program.id.to_s)
       end
 
       def load_json_data(filename)

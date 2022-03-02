@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-  factory :pdf_template, class: 'CscCore::PdfTemplate' do
+  factory :pdf_template, class: "CscCore::PdfTemplate" do
     name { FFaker::Name.name }
     language_code { "km" }
     program

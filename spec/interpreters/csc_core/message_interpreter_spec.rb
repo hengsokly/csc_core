@@ -6,9 +6,9 @@ module CscCore
   RSpec.describe MessageInterpreter do
     describe "interpreted_message" do
       let(:scorecard) { create(:scorecard) }
-      let(:message_content) {
+      let(:message_content) do
         "Scorecard {{scorecard.uuid}}({{scorecard.facility_name}}) in {{scorecard.location_name}} is being downloaded by {{scorecard.local_ngo_name}} on {{scorecard.planned_end_date}}"
-      }
+      end
 
       context "no scorecard" do
         let(:interpreter) { MessageInterpreter.new(nil, message_content) }
@@ -39,9 +39,11 @@ module CscCore
       end
 
       context "valid template code" do
-        let(:display_message) {
-          "Scorecard <b>#{scorecard.uuid}</b>(<b>#{scorecard.facility_name}</b>) in <b>#{scorecard.location_name}</b> is being downloaded by <b>#{scorecard.local_ngo_name}</b> on <b>#{I18n.l(scorecard.planned_end_date, format: :nice)}</b>"
-        }
+        let(:display_message) do
+          "Scorecard <b>#{scorecard.uuid}</b>(<b>#{scorecard.facility_name}</b>) in <b>#{scorecard.location_name}</b> is being downloaded by <b>#{scorecard.local_ngo_name}</b> on <b>#{I18n.l(
+            scorecard.planned_end_date, format: :nice
+          )}</b>"
+        end
         let(:interpreter) { MessageInterpreter.new(scorecard, message_content) }
 
         it { expect(interpreter.interpreted_message).to eq(display_message) }

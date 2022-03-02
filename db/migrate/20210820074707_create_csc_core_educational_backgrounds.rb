@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCscCoreEducationalBackgrounds < ActiveRecord::Migration[6.1]
   def change
     create_table :educational_backgrounds do |t|

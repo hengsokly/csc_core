@@ -22,10 +22,14 @@ module CscCore
         #   ...
         # ]
         def build_profiles
-          profiles = [ { type: "female", count: scorecard.participants.select { |participant| participant.gender == "female" }.length } ]
+          profiles = [{ type: "female", count: scorecard.participants.select do |participant|
+                                                 participant.gender == "female"
+                                               end.length }]
 
-          %w(disability minority poor_card youth).each do |type|
-            profiles << { type: type, count: scorecard.participants.select { |participant| !!participant.send(type) }.length }
+          %w[disability minority poor_card youth].each do |type|
+            profiles << { type: type, count: scorecard.participants.select do |participant|
+                                               participant.send(type).nil?
+                                             end.length }
           end
 
           profiles

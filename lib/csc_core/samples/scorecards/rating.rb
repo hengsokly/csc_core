@@ -20,13 +20,12 @@ module CscCore
           update_voting_indicator_median(scorecard)
         end
 
-        private
-          def self.update_voting_indicator_median(scorecard)
-            scorecard.voting_indicators.each do |indi|
-              ratings = CscCore::Rating.where(voting_indicator_uuid: indi.uuid).pluck(:score)
-              indi.update(median: ratings.median.ceil)
-            end
+        def self.update_voting_indicator_median(scorecard)
+          scorecard.voting_indicators.each do |indi|
+            ratings = CscCore::Rating.where(voting_indicator_uuid: indi.uuid).pluck(:score)
+            indi.update(median: ratings.median.ceil)
           end
+        end
       end
     end
   end

@@ -16,7 +16,10 @@ module CscCore
 
     def archive?
       return false if record.id == user.id
-      return true if user.system_admin? || (user.program_admin? && !record.system_admin?) || (user.staff? && record.lngo?)
+      if user.system_admin? || (user.program_admin? && !record.system_admin?) || (user.staff? && record.lngo?)
+        return true
+      end
+
       false
     end
 
@@ -26,7 +29,7 @@ module CscCore
 
     def destroy?
       archive? && record.deleted? &&
-      record.mobile_notifications.length.zero? && record.scorecards.length.zero?
+        record.mobile_notifications.length.zero? && record.scorecards.length.zero?
     end
 
     def unlock_access?
@@ -35,7 +38,7 @@ module CscCore
 
     def roles
       return User::ROLES if user.system_admin?
-      return [["Lngo", "lngo"]] if user.staff?
+      return [%w[Lngo lngo]] if user.staff?
 
       User::ROLES[1..-1]
     end

@@ -11,7 +11,7 @@ module CscCore
     def import(file_path)
       spreadsheet(file_path).each_with_pagename do |sheet_name, sheet|
         get(sheet_name).import(sheet)
-      rescue
+      rescue StandardError
         Rails.logger.warn "unknown handler for sheet: #{sheet_name}"
       end
     end

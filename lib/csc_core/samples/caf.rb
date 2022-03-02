@@ -4,7 +4,7 @@ module CscCore
   module Samples
     class Caf
       def self.load
-        cafs = ["Nary", "Sokra", "Mealea", "Thavy", "Marady", "Nita", "Orenida"]
+        cafs = %w[Nary Sokra Mealea Thavy Marady Nita Orenida]
         cafs.each do |name|
           local_ngo = CscCore::LocalNgo.all.sample
           commune = ::Pumi::Commune.all.sample
@@ -12,7 +12,7 @@ module CscCore
 
           local_ngo.cafs.create(
             name: name,
-            sex: %w(female male other).sample,
+            sex: %w[female male other].sample,
             date_of_birth: rand(20..50).years.ago,
             tel: "",
             address: address

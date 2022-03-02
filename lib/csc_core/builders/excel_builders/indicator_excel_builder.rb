@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module CscCore
   module ExcelBuilders
     class IndicatorExcelBuilder
@@ -20,12 +21,14 @@ module CscCore
           I18n.t("excel.indicator_name"),
           I18n.t("excel.indicator_tag"),
           I18n.t("excel.is_custom_indicator"),
-          I18n.t("excel.facility_name"),
+          I18n.t("excel.facility_name")
         ]
       end
 
       def build_row(scorecards)
-        uuids = scorecards.includes(:raised_indicators).map { |s| s.raised_indicators.pluck(:indicator_uuid) }.flatten.uniq
+        uuids = scorecards.includes(:raised_indicators).map do |s|
+          s.raised_indicators.pluck(:indicator_uuid)
+        end.flatten.uniq
 
         CscCore::Indicator.where(uuid: uuids).includes(:tag, :categorizable).each do |indi|
           sheet.add_row generate_row(indi)

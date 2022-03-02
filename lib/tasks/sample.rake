@@ -19,13 +19,13 @@ if ENV["ENABLE_RESET_DATA_SCHEDULE"] == "true" || Rails.env.development? || Rail
     end
 
     desc "Loads sample data"
-    task :export, [:json_type] => :environment do |task, args|
+    task :export, [:json_type] => :environment do |_task, args|
       filetype = args[:json_type] || "json"
       CscCore::Samples::CscWeb.export(filetype)
     end
 
     desc "Simulate scorecard data"
-    task :load_scorecard, [:count] => :environment do |task, args|
+    task :load_scorecard, [:count] => :environment do |_task, args|
       count = (args[:count] || 1).to_i
       CscCore::Samples::Scorecard.load(count)
     end

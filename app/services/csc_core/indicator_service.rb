@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CscCore
   # frozen_string_literal: true
 
@@ -73,7 +75,9 @@ module CscCore
       def extract_file(filename)
         return unless filename.present?
 
-        file = @zipfile.select { |entry| entry.name.split("/").last.split(".").first == "#{filename.split('.').first}" }.first
+        file = @zipfile.select do |entry|
+          entry.name.split("/").last.split(".").first == filename.split(".").first.to_s
+        end.first
         return unless file.present?
 
         file_destination = File.join("public/uploads/tmp", file.name)
@@ -104,5 +108,4 @@ module CscCore
         %w[id created_at updated_at audio]
       end
   end
-
 end

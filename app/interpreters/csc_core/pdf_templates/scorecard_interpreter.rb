@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module CscCore
   module PdfTemplates
     class ScorecardInterpreter
@@ -7,8 +8,8 @@ module CscCore
       end
 
       def load(field)
-        if self.respond_to?(field.to_sym)
-          self.send(field.to_sym)
+        if respond_to?(field.to_sym)
+          send(field.to_sym)
         else
           @scorecard.send(field.to_sym)
         end

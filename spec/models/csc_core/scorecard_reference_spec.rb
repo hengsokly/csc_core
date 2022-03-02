@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: scorecard_references
@@ -10,7 +12,7 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
-require 'rails_helper'
+require "rails_helper"
 
 module CscCore
   RSpec.describe ScorecardReference, type: :model do

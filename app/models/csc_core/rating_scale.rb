@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: rating_scales
@@ -25,11 +27,16 @@ module CscCore
 
     def self.defaults
       [
-        { code: "very_bad", value: "1", name: "Very bad", language_rating_scales_attributes: [{ content: "មិនពេញចិត្តខ្លាំង", audio: "very_bad.mp3" }] },
-        { code: "bad", value: "2", name: "Bad", language_rating_scales_attributes: [{ content: "មិនពេញចិត្ត", audio: "bad.mp3" }] },
-        { code: "acceptable", value: "3", name: "Acceptable", language_rating_scales_attributes: [{ content: "ទទួលយកបាន", audio: "acceptable.mp3" }] },
-        { code: "good", value: "4", name: "Good", language_rating_scales_attributes: [{ content: "ពេញចិត្ត", audio: "good.mp3" }] },
-        { code: "very_good", value: "5", name: "Very good", language_rating_scales_attributes: [{ content: "ពេញចិត្តខ្លាំង", audio: "very_good.mp3" }] },
+        { code: "very_bad", value: "1", name: "Very bad",
+          language_rating_scales_attributes: [{ content: "មិនពេញចិត្តខ្លាំង", audio: "very_bad.mp3" }] },
+        { code: "bad", value: "2", name: "Bad",
+          language_rating_scales_attributes: [{ content: "មិនពេញចិត្ត", audio: "bad.mp3" }] },
+        { code: "acceptable", value: "3", name: "Acceptable",
+          language_rating_scales_attributes: [{ content: "ទទួលយកបាន", audio: "acceptable.mp3" }] },
+        { code: "good", value: "4", name: "Good",
+          language_rating_scales_attributes: [{ content: "ពេញចិត្ត", audio: "good.mp3" }] },
+        { code: "very_good", value: "5", name: "Very good",
+          language_rating_scales_attributes: [{ content: "ពេញចិត្តខ្លាំង", audio: "very_good.mp3" }] }
       ]
     end
 
@@ -40,10 +47,12 @@ module CscCore
         rating[:language_rating_scales_attributes].each do |lang_rating|
           lang_rating[:language_id] = km_language.id
           lang_rating[:language_code] = km_language.code
-          lang_rating[:audio] = Pathname.new(audios_path.select { |file| file.split("/").last == "#{lang_rating[:audio]}" }.first).open
+          lang_rating[:audio] = Pathname.new(audios_path.select do |file|
+                                               file.split("/").last == (lang_rating[:audio]).to_s
+                                             end.first).open
         end
 
-        self.create(rating)
+        create(rating)
       end
     end
   end

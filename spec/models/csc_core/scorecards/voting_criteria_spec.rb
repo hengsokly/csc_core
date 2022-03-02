@@ -22,13 +22,19 @@ module CscCore
       let(:criteria2) { criterias.select { |c| c["indicatorable_id"] == indicator2.id }[0] }
 
       before do
-        create(:rating, scorecard: scorecard, voting_indicator_uuid: voting_indicator1.uuid, participant_uuid: female.uuid, score: 1)
-        create(:rating, scorecard: scorecard, voting_indicator_uuid: voting_indicator1.uuid, participant_uuid: male.uuid, score: 3)
-        create(:rating, scorecard: scorecard, voting_indicator_uuid: voting_indicator1.uuid, participant_uuid: other.uuid, score: 2)
+        create(:rating, scorecard: scorecard, voting_indicator_uuid: voting_indicator1.uuid,
+                        participant_uuid: female.uuid, score: 1)
+        create(:rating, scorecard: scorecard, voting_indicator_uuid: voting_indicator1.uuid,
+                        participant_uuid: male.uuid, score: 3)
+        create(:rating, scorecard: scorecard, voting_indicator_uuid: voting_indicator1.uuid,
+                        participant_uuid: other.uuid, score: 2)
 
-        create(:rating, scorecard: scorecard, voting_indicator_uuid: voting_indicator2.uuid, participant_uuid: female.uuid, score: 5)
-        create(:rating, scorecard: scorecard, voting_indicator_uuid: voting_indicator2.uuid, participant_uuid: male.uuid, score: 3)
-        create(:rating, scorecard: scorecard, voting_indicator_uuid: voting_indicator2.uuid, participant_uuid: other.uuid, score: 4)
+        create(:rating, scorecard: scorecard, voting_indicator_uuid: voting_indicator2.uuid,
+                        participant_uuid: female.uuid, score: 5)
+        create(:rating, scorecard: scorecard, voting_indicator_uuid: voting_indicator2.uuid,
+                        participant_uuid: male.uuid, score: 3)
+        create(:rating, scorecard: scorecard, voting_indicator_uuid: voting_indicator2.uuid,
+                        participant_uuid: other.uuid, score: 4)
       end
 
       it "returns criterias length with 2" do

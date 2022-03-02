@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: chat_groups
@@ -24,7 +26,7 @@ module CscCore
     scope :telegrams, -> { where(provider: "Telegram") }
     scope :actives, -> { where(actived: true) }
 
-    TELEGRAM_CHAT_TYPES = %w[group supergroup]
+    TELEGRAM_CHAT_TYPES = %w[group supergroup].freeze
     TELEGRAM_SUPER_GROUP = "supergroup"
     TELEGRAM_GROUP = "group"
   end

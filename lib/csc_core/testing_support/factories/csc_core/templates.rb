@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
-  factory :template, class: 'CscCore::Template' do
-    name        { FFaker::Name.name }
+  factory :template, class: "CscCore::Template" do
+    name { FFaker::Name.name }
     program
 
     trait :with_indicators do

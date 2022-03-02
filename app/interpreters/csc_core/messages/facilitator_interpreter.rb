@@ -7,7 +7,7 @@ module CscCore
         @scorecard = scorecard
       end
 
-      def load(field)
+      def load(_field)
         return "" if @scorecard.facilitators.first.nil?
 
         @scorecard.facilitators.first.caf.name

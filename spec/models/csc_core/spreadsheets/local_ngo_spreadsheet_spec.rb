@@ -7,7 +7,10 @@ module CscCore
     describe "#process" do
       let(:program) { create(:program) }
       let(:local_ngo_spreadsheet) { Spreadsheets::LocalNgoSpreadsheet.new(program.id) }
-      let(:row) { { "code" => "lngo0001", "name" => "LNGO1", "province_id" => "01", "district_id" => "0102", "commune_id" => "010201", "target_province_ids" => "01,02" } }
+      let(:row) do
+        { "code" => "lngo0001", "name" => "LNGO1", "province_id" => "01", "district_id" => "0102", "commune_id" => "010201",
+          "target_province_ids" => "01,02" }
+      end
 
       context "new record" do
         it "creates a new local ngo" do

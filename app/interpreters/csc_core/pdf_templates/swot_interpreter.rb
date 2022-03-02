@@ -8,31 +8,31 @@ module CscCore
       end
 
       def load(field)
-        self.send(field.to_sym)
+        send(field.to_sym)
       end
 
       def result_table
         html = "<table class='table table-bordered'>"
-        html += "<thead>#{ build_result_header }</thead>"
-        html += "<tbody>#{ build_result_rows }</tbody>"
-        html + "</table>"
+        html += "<thead>#{build_result_header}</thead>"
+        html += "<tbody>#{build_result_rows}</tbody>"
+        "#{html}</table>"
       end
 
       private
         def build_result_header
-          columns = %w(indicator average_score strength weakness suggested_action)
+          columns = %w[indicator average_score strength weakness suggested_action]
 
-          headers = columns.map { |col|
-            "<th class='text-center'>" + I18n.t("interpreter.pdf_template.#{col}") + "</th>"
-          }.join("")
+          headers = columns.map do |col|
+            "<th class='text-center'>#{I18n.t("interpreter.pdf_template.#{col}")}</th>"
+          end.join("")
 
           "<tr>#{headers}</tr>"
         end
 
         def build_result_rows
-          @scorecard.voting_indicators.map { |vi|
-            "<tr>#{ build_result_columns(vi) }</tr>"
-          }.join("")
+          @scorecard.voting_indicators.map do |vi|
+            "<tr>#{build_result_columns(vi)}</tr>"
+          end.join("")
         end
 
         def build_result_columns(voting_indicator)
@@ -50,12 +50,12 @@ module CscCore
 
         def build_list(indicator_activities)
           str = "<td><ul>"
-          str += indicator_activities.map { |indicator_activity|
+          str += indicator_activities.map do |indicator_activity|
             selected = indicator_activity.selected? ? "(#{I18n.t('interpreter.pdf_template.selected')})" : ""
             "<li>#{indicator_activity.content} #{selected}</li>"
-          }.join("")
+          end.join("")
 
-          str + "</ul></td>"
+          "#{str}</ul></td>"
         end
     end
   end

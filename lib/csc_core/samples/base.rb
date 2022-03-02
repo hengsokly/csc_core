@@ -17,12 +17,13 @@ module CscCore
         column = "#{language.name_en} (#{language.code})" # Khmer (km)
 
         if filename = row[column].presence
-          audios.select { |file| file.split("/").last.split(".").first == "#{filename.split('.').first}" }.first
+          audios.select { |file| file.split("/").last.split(".").first == filename.split(".").first.to_s }.first
         end
       end
 
       def self.audios
-        @audios ||= Dir.glob(CscCore::Engine.root.join("lib", "csc_core", "samples", "assets", "audios", "**", "**", "**", "**"))
+        @audios ||= Dir.glob(CscCore::Engine.root.join("lib", "csc_core", "samples", "assets", "audios", "**", "**",
+                                                       "**", "**"))
       end
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCscCoreRaisedIndicators < ActiveRecord::Migration[6.1]
   def change
     create_table :raised_indicators do |t|

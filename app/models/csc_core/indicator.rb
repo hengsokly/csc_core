@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: indicators
@@ -22,7 +24,7 @@ module CscCore
     include Tagable
 
     # Constant
-    TYPES = %w(CscCore::Indicators::PredefineIndicator CscCore::Indicators::CustomIndicator)
+    TYPES = %w[CscCore::Indicators::PredefineIndicator CscCore::Indicators::CustomIndicator].freeze
 
     # Association
     belongs_to :categorizable, polymorphic: true, touch: true
@@ -34,7 +36,9 @@ module CscCore
 
     # Validation
     validates :name, presence: true
-    validates :name, uniqueness: { scope: [:categorizable_id, :categorizable_type] }, unless: -> { type == "CscCore::Indicators::CustomIndicator" }
+    validates :name, uniqueness: { scope: %i[categorizable_id categorizable_type] }, unless: lambda {
+                                                                                               type == "CscCore::Indicators::CustomIndicator"
+                                                                                             }
     validate :image_size_validation
 
     # Callback
@@ -72,7 +76,10 @@ module CscCore
     def self.filter(params)
       scope = all
       scope = scope.where("LOWER(name) LIKE ?", "%#{params[:name].downcase}%") if params[:name].present?
-      scope = scope.where(categorizable_id: params[:facility_id], categorizable_type: "CscCore::Facility") if params[:facility_id].present?
+      if params[:facility_id].present?
+        scope = scope.where(categorizable_id: params[:facility_id],
+                            categorizable_type: "CscCore::Facility")
+      end
       scope
     end
 

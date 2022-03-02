@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateCscCoreDataPublicationLogs < ActiveRecord::Migration[6.1]
   def change
     create_table :data_publication_logs, id: :uuid do |t|
