@@ -13,6 +13,7 @@
 #  dashboard_user_roles      :string           default([]), is an Array
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  uuid                      :uuid
 #
 require "rails_helper"
 
