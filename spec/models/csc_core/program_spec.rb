@@ -42,5 +42,55 @@ module CscCore
         end.to change(DashboardWorker.jobs, :count)
       end
     end
+
+    describe "#quota_reached?" do
+      context "unset quota quantity" do
+        let!(:quota)   { create(:quota, quantity: nil) }
+        let!(:program) { quota.program }
+
+        it { expect(program.quota_reached?).to be_falsey }
+      end
+
+      context "quota quantity bigger than program scorecards quantity" do
+        let!(:quota)   { create(:quota, quantity: 2) }
+        let!(:program) { quota.program }
+        let!(:scorecard) { create(:scorecard, program: program) }
+
+        it { expect(program.quota_reached?).to be_falsey }
+      end
+
+      context "quota quantity equal to program scorecards quantity" do
+        let!(:quota)   { create(:quota, quantity: 1) }
+        let!(:program) { quota.program }
+        let!(:scorecard) { create(:scorecard, program: program) }
+
+        it { expect(program.quota_reached?).to be_truthy }
+      end
+    end
+
+    describe "#quota_warning?" do
+      context "unset quota quantity" do
+        let!(:quota)   { create(:quota, quantity: nil) }
+        let!(:program) { quota.program }
+
+        it { expect(program.quota_warning?).to be_falsey }
+      end
+
+      context "quota quantity reach 70%" do
+        let!(:quota)   { create(:quota, quantity: 2) }
+        let!(:program) { quota.program }
+        let!(:scorecard) { create(:scorecard, program: program) }
+
+        it { expect(program.quota_warning?).to be_truthy }
+      end
+
+      context "quota quantity equal to program scorecards quantity" do
+        let!(:quota)   { create(:quota, quantity: 1) }
+        let!(:program) { quota.program }
+        let!(:scorecard) { create(:scorecard, program: program) }
+
+        it { expect(program.quota_warning?).to be_falsey }
+      end
+    end
   end
 end

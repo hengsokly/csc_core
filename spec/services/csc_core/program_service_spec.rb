@@ -8,9 +8,9 @@ module CscCore
       let!(:pdf_template) { create(:pdf_template, program: program) }
       let!(:facility) { create(:facility, :with_parent, :with_indicators, program: program) }
 
-      let(:wvi)      { create(:program, name: 'World Vision', shortcut_name: 'WVI')}
+      let(:wvi)      { create(:program, name: "World Vision", shortcut_name: "WVI") }
       let(:service)  { ProgramService.new(wvi.id) }
-      let(:options)  { ['language', 'pdf_template', 'facility', 'indicator', 'rating_scale'] }
+      let(:options)  { ["language", "pdf_template", "facility", "indicator", "rating_scale"] }
 
       before {
         wvi.languages.delete_all
@@ -36,6 +36,6 @@ module CscCore
 
       it { expect(wvi.rating_scales.length).to eq(5) }
       it { expect(wvi.rating_scales.length).to eq(program.rating_scales.length) }
-     end
+    end
   end
 end

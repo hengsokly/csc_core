@@ -26,6 +26,7 @@ module CscCore
 
     scope :no_program, -> { where(program: nil) }
     scope :system_contacts, -> { where(program: nil) }
+    scope :emails, -> { where(contact_type: "email") }
 
     validates :contact_type, presence: true
     validates :value, presence: true
