@@ -15,7 +15,7 @@ module CscCore
     end
 
     def create?
-      default_user? && !user.program.quota_expired?
+      default_user? && !user.program.quota_reached?
     end
 
     def update?

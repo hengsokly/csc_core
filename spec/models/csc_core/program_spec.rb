@@ -43,12 +43,12 @@ module CscCore
       end
     end
 
-    describe "#quota_expired?" do
+    describe "#quota_reached?" do
       context "unset quota quantity" do
         let!(:quota)   { create(:quota, quantity: nil) }
         let!(:program) { quota.program }
 
-        it { expect(program.quota_expired?).to be_falsey }
+        it { expect(program.quota_reached?).to be_falsey }
       end
 
       context "quota quantity bigger than program scorecards quantity" do
@@ -56,7 +56,7 @@ module CscCore
         let!(:program) { quota.program }
         let!(:scorecard) { create(:scorecard, program: program) }
 
-        it { expect(program.quota_expired?).to be_falsey }
+        it { expect(program.quota_reached?).to be_falsey }
       end
 
       context "quota quantity equal to program scorecards quantity" do
@@ -64,7 +64,7 @@ module CscCore
         let!(:program) { quota.program }
         let!(:scorecard) { create(:scorecard, program: program) }
 
-        it { expect(program.quota_expired?).to be_truthy }
+        it { expect(program.quota_reached?).to be_truthy }
       end
     end
 

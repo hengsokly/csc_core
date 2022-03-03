@@ -4,11 +4,11 @@
 #
 # Table name: quotas
 #
-#  id              :uuid             not null, primary key
-#  program_uuid    :string
-#  scorecard_quota :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id         :uuid             not null, primary key
+#  program_id :integer
+#  quantity   :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 module CscCore
   class Quota < ApplicationRecord

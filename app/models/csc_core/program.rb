@@ -66,12 +66,12 @@ module CscCore
       super || build_quota
     end
 
-    def quota_expired?
-      !quota.unlimited? && scorecards.length == quota.quantity
+    def quota_reached?
+      !quota.unlimited? && scorecards.length >= quota.quantity
     end
 
     def quota_warning?
-      return false if quota.unlimited? || scorecards.length == quota.quantity
+      return false if quota.unlimited? || scorecards.length >= quota.quantity
 
       scorecards.length >= (quota.quantity * 0.7).floor
     end
