@@ -46,6 +46,7 @@
 #  completor_id              :integer
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  dataset_code              :string
 #
 require "rails_helper"
 
@@ -58,6 +59,7 @@ module CscCore
     it { is_expected.to belong_to(:unit_type).class_name("CscCore::Facility") }
     it { is_expected.to belong_to(:facility) }
     it { is_expected.to belong_to(:location).optional }
+    it { is_expected.to belong_to(:dataset).with_foreign_key(:dataset_code).with_primary_key(:code).optional }
 
     it { is_expected.to have_many(:facilitators) }
     it { is_expected.to have_many(:cafs).through(:facilitators) }

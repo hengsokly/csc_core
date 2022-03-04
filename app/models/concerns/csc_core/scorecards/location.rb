@@ -29,8 +29,8 @@ module CscCore
         private
           def set_location_code
             self.location_code = commune_id
-            self.location_code = district_id if commune_id == "none"
-            self.location_code = province_id if district_id == "none"
+            self.location_code = district_id if commune_id == "none" || commune_id.blank?
+            self.location_code = province_id if district_id == "none" || district_id.blank?
           end
       end
     end
