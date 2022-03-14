@@ -46,6 +46,7 @@
 #  completor_id              :integer
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
+#  dataset_code              :string
 #
 module CscCore
   class Scorecard < ApplicationRecord
@@ -78,6 +79,7 @@ module CscCore
     belongs_to :creator, class_name: "CscCore::User"
     belongs_to :completor, class_name: "CscCore::User", optional: true
     belongs_to :primary_school, foreign_key: :primary_school_code, optional: true
+    belongs_to :dataset, foreign_key: :dataset_code, primary_key: :code, optional: true
 
     has_many   :facilitators, foreign_key: :scorecard_uuid
     has_many   :cafs, through: :facilitators
@@ -97,19 +99,19 @@ module CscCore
     has_many   :suggested_indicator_activities, foreign_key: :scorecard_uuid, primary_key: :uuid
 
     delegate  :name, to: :local_ngo, prefix: :local_ngo, allow_nil: true
-    delegate  :name_en, :name_km, to: :primary_school, prefix: :primary_school, allow_nil: true
+    delegate  :name_en, :name_km, :name, to: :primary_school, prefix: :primary_school, allow_nil: true
+    delegate  :name_en, :name_km, :name, to: :dataset, prefix: :dataset, allow_nil: true
     delegate  :name, to: :facility, prefix: :facility
-    delegate  :name, to: :primary_school, prefix: :primary_school, allow_nil: true
 
     validates :year, presence: true
     validates :province_id, presence: true
     validates :district_id, presence: true
-    validates :commune_id, presence: true
+    validates :commune_id, presence: true, if: -> { facility.try(:category_id).nil? || facility.category.hierarchy.include?("commune") }
     validates :unit_type_id, presence: true
     validates :facility_id, presence: true
     validates :scorecard_type, presence: true
     validates :local_ngo_id, presence: true
-    validates :primary_school_code, presence: true, if: -> { facility.try(:dataset).present? }
+    validates :dataset_code, presence: true, if: -> { facility.try(:category_id).present? }
 
     validates :planned_start_date, presence: true
     validates :planned_end_date, presence: true

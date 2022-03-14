@@ -59,7 +59,7 @@ module CscCore
     config.generators do |g|
       g.test_framework :rspec
       g.fixture_replacement :factory_bot # newly added code
-      g.factory_bot dir: "spec/factories" # newly added code
+      g.factory_bot dir: "lib/csc_core/testing_support/factories" # newly added code
     end
 
     config.i18n.load_path += Dir[root.join("config", "locales", "**", "*.{rb,yml}").to_s]

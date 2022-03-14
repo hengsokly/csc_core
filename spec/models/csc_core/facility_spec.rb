@@ -18,12 +18,14 @@
 #  default        :boolean          default(FALSE)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  category_id    :string
 #
 require "rails_helper"
 
 module CscCore
   RSpec.describe Facility, type: :model do
     it { is_expected.to belong_to(:program) }
+    it { is_expected.to belong_to(:category).optional }
     it { is_expected.to validate_presence_of(:name_en) }
     it { is_expected.to validate_presence_of(:name_km) }
     it { is_expected.to validate_presence_of(:code) }

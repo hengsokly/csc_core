@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_03_090040) do
+ActiveRecord::Schema.define(version: 2022_03_04_091539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2022_03_03_090040) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["deleted_at"], name: "index_cafs_on_deleted_at"
+  end
+
+  create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "code"
+    t.string "name_en"
+    t.string "name_km"
+    t.string "hierarchy"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "chat_groups", force: :cascade do |t|
@@ -103,6 +112,18 @@ ActiveRecord::Schema.define(version: 2022_03_03_090040) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "datasets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "code"
+    t.string "name_en"
+    t.string "name_km"
+    t.string "category_id"
+    t.string "province_id"
+    t.string "district_id"
+    t.string "commune_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "educational_backgrounds", force: :cascade do |t|
     t.string "code"
     t.string "name_en"
@@ -133,6 +154,7 @@ ActiveRecord::Schema.define(version: 2022_03_03_090040) do
     t.boolean "default", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "category_id"
     t.index ["lft"], name: "index_facilities_on_lft"
     t.index ["parent_id"], name: "index_facilities_on_parent_id"
     t.index ["rgt"], name: "index_facilities_on_rgt"
@@ -479,6 +501,7 @@ ActiveRecord::Schema.define(version: 2022_03_03_090040) do
     t.integer "completor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "dataset_code"
     t.index ["deleted_at"], name: "index_scorecards_on_deleted_at"
     t.index ["uuid"], name: "index_scorecards_on_uuid"
   end
