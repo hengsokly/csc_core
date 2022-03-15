@@ -139,6 +139,16 @@ module CscCore
       super and actived?
     end
 
+    def lock_access
+      self.lock_access!(send_instructions: false)
+
+      CscCore::UserWorker.perform_async('notify_locked_user', id)
+    end
+
+    def notify_locked_user
+      CscCore::NotificationMailer.notify_locked_user(email).deliver_now
+    end
+
     private
       def generate_authentication_token
         self.encrypted_password ||= ""
