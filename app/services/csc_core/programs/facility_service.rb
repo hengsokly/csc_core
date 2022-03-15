@@ -18,7 +18,7 @@ module CscCore
       def create_facility(facility, parent = nil)
         new_facility = program.facilities.find_or_initialize_by(code: facility.code)
         new_facility.update(
-          facility.attributes.extract!("name_en", "name_km", "dataset", "default")
+          facility.attributes.extract!("name_en", "name_km", "dataset", "category_id", "default")
                              .merge("parent_id" => parent.try(:id))
         )
 

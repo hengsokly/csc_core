@@ -67,7 +67,7 @@ module CscCore
     end
 
     def quota_reached?
-      !quota.unlimited? && scorecards.length >= quota.quantity
+      !quota.unlimited? && scorecards.persisteds.length >= quota.quantity
     end
 
     def quota_warning?

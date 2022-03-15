@@ -132,6 +132,7 @@ module CscCore
     accepts_nested_attributes_for :ratings, allow_destroy: true
 
     scope :completeds, -> { where.not(locked_at: nil) }
+    scope :persisteds, -> { where.not(id: nil) }
 
     def status
       progress.present? ? progress : "planned"
