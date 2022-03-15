@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_04_091539) do
+ActiveRecord::Schema.define(version: 2022_03_15_034000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -212,6 +212,7 @@ ActiveRecord::Schema.define(version: 2022_03_04_091539) do
     t.integer "program_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "uuid", default: -> { "uuid_generate_v4()" }
   end
 
   create_table "languages_indicators", force: :cascade do |t|
