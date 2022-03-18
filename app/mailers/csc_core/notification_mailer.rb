@@ -14,5 +14,13 @@ module CscCore
 
       mail(to: emails, subject: "Scorecard RequestChange Notification")
     end
+
+    def notify_locked_user(email)
+      @user = User.find_by email: email
+      @contacts = Contact.where('program_id = ? OR program_id is NULL', @user.program_id)
+
+      mail(to: email, subject: "Your account is locked")
+    end
+
   end
 end

@@ -1,0 +1,13 @@
+<%= "Dear #{@user.display_name}" %>
+
+<p>
+We're writing to notify you that your account is locked! To unlock your account, please contact the following email.
+</p>
+
+<ul>
+  <% @contacts.take(1).each do |contact| %>
+    <li>
+      <%= contact.value %>
+    </li>
+  <% end %>
+</ul>
