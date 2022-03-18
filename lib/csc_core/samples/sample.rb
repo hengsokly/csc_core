@@ -12,6 +12,7 @@ require_relative "primary_school"
 require_relative "location"
 require_relative "category"
 require_relative "dataset"
+require_relative "profile"
 
 require_relative "local_ngo"
 require_relative "caf"
@@ -25,4 +26,9 @@ require_relative "language"
 require_relative "rating_scale"
 
 # For scorecard
+require_relative "scorecards/participant"
+require_relative "scorecards/voting_indicator"
+require_relative "scorecards/rating"
+require_relative "scorecards/raised_indicator"
+require_relative "scorecards/scorecard_reference"
 require_relative "scorecard"

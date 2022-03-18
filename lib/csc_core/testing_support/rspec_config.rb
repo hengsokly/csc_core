@@ -10,4 +10,4 @@ require "rspec-sidekiq"
 require "byebug"
 
 require_relative "support/factory_bot"
-require_relative "factories"
+require_relative "factory"

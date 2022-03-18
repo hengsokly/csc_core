@@ -12,7 +12,7 @@ module CscCore
           category.update(
             name_en: data[1],
             name_km: data[2],
-            hierarchy: data[3].split('|')
+            hierarchy: data[3].split("|")
           )
         end
       end
