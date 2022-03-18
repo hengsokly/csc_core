@@ -10,7 +10,8 @@ module CscCore
         CscCore::Samples::Language.load
         CscCore::Samples::PdfTemplate.load
         CscCore::Samples::Location.load
-        CscCore::Samples::PrimarySchool.load
+        CscCore::Samples::Category.load
+        CscCore::Samples::Dataset.load
         CscCore::Samples::LocalNgo.load
         CscCore::Samples::User.load
         CscCore::Samples::Facility.load

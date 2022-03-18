@@ -34,11 +34,11 @@ module CscCore
         end
 
         def index_document_async
-          CscCore::IndexWorker.perform_async(:index, uuid)
+          CscCore::IndexWorker.perform_async("index", uuid)
         end
 
         def delete_document_async
-          CscCore::IndexWorker.perform_async(:delete, uuid)
+          CscCore::IndexWorker.perform_async("delete", uuid)
         end
 
         def index_document
