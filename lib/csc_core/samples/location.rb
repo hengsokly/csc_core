@@ -6,7 +6,7 @@ module CscCore
   module Samples
     class Location < Base
       def self.load
-        csv = CSV.read(file_path("locations.csv"))
+        csv = CSV.read(file_path("locations.sample.csv"))
         csv.shift
         csv.each do |data|
           loc = CscCore::Location.find_or_initialize_by(code: data[0])
