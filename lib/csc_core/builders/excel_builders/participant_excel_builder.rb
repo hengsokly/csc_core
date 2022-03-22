@@ -44,10 +44,10 @@ module CscCore
             scorecard.uuid,
             participant.age,
             participant.gender,
-            participant.youth?,
-            participant.disability?,
-            participant.poor_card?,
-            participant.minority?
+            participant.profiles.select { |profile| profile.code == "YO" }.present?,
+            participant.profiles.select { |profile| profile.code == "DI" }.present?,
+            participant.profiles.select { |profile| profile.code == "PO" }.present?,
+            participant.profiles.select { |profile| profile.code == "ET" }.present?,
           ]
         end
     end

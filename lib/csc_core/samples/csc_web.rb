@@ -12,6 +12,8 @@ module CscCore
         CscCore::Samples::Location.load
         CscCore::Samples::Category.load
         CscCore::Samples::Dataset.load
+        CscCore::Samples::Profile.load
+
         CscCore::Samples::LocalNgo.load
         CscCore::Samples::User.load
         CscCore::Samples::Facility.load

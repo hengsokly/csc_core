@@ -10,6 +10,7 @@ namespace :db do
 
   desc "prepare for new db environment"
   task dev: :environment do
+    sh "rails db:environment:set RAILS_ENV=development"
     sh "rake db:drop"
     sh "rake db:create"
     sh "rake db:migrate"

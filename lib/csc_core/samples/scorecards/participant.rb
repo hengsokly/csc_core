@@ -16,14 +16,12 @@ module CscCore
         end
 
         def self.create_participant(scorecard, gender = nil)
-          scorecard.participants.create(
+          participant = scorecard.participants.create(
             age: rand(20..65),
-            gender: gender || %w[male other].sample,
-            disability: [true, false].sample,
-            minority: [true, false].sample,
-            poor_card: [true, false].sample,
-            youth: [true, false].sample
+            gender: CscCore::Participant::GENDERS.sample
           )
+
+          participant.profile_ids = CscCore::Profile.pluck(:id).take(rand(1..4))
         end
       end
     end

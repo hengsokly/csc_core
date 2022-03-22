@@ -142,7 +142,7 @@ module CscCore
     def lock_access
       self.lock_access!(send_instructions: false)
 
-      CscCore::UserWorker.perform_async('notify_locked_user', id)
+      CscCore::UserWorker.perform_async("notify_locked_user", id)
     end
 
     def notify_locked_user
