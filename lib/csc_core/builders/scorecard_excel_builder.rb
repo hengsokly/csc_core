@@ -10,8 +10,7 @@ module CscCore
     end
 
     def build
-      %w[ScorecardSummary Participant Indicator ProposedIndicator VotingSummary VotingDetail
-         ScorecardResult].each do |klass_name|
+      %w[ScorecardReport].each do |klass_name|
         add_worksheet(klass_name)
       end
     end

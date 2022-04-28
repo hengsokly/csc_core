@@ -26,6 +26,10 @@ module CscCore
           Pumi::Commune.find_by_id(commune_id).try("name_#{I18n.locale}")
         end
 
+        def conducted_place
+          primary_school_name || commune || district
+        end
+
         private
           def set_location_code
             self.location_code = commune_id
