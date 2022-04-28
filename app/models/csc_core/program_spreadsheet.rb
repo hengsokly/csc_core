@@ -9,6 +9,8 @@ module CscCore
     end
 
     def import(file_path)
+      return unless valid?(file_path)
+
       spreadsheet(file_path).each_with_pagename do |sheet_name, sheet|
         get(sheet_name).import(sheet)
       rescue StandardError
@@ -23,6 +25,12 @@ module CscCore
 
       def spreadsheet(file_path)
         Roo::Spreadsheet.open(file_path)
+      end
+
+      def valid?(file_path)
+        accepted_formats = [".xls", ".xlsx"]
+
+        file_path.present? && accepted_formats.include?(File.extname(file_path))
       end
   end
 end
