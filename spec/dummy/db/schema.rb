@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_18_072052) do
+ActiveRecord::Schema.define(version: 2022_04_28_023219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -239,6 +239,8 @@ ActiveRecord::Schema.define(version: 2022_03_18_072052) do
     t.integer "program_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_local_ngos_on_deleted_at"
   end
 
   create_table "locations", primary_key: "code", id: :string, force: :cascade do |t|
