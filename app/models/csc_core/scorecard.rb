@@ -80,6 +80,7 @@ module CscCore
     belongs_to :completor, class_name: "CscCore::User", optional: true
     belongs_to :primary_school, foreign_key: :primary_school_code, optional: true
     belongs_to :dataset, foreign_key: :dataset_code, primary_key: :code, optional: true
+    belongs_to :language, foreign_key: :language_conducted_code, primary_key: :code, optional: true
 
     has_many   :facilitators, foreign_key: :scorecard_uuid
     has_many   :cafs, through: :facilitators

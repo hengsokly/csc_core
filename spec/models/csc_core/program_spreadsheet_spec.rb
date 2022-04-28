@@ -28,7 +28,7 @@ module CscCore
       end
 
       context "wrong file extension" do
-        let(:wrong_file) { Rack::Test::UploadedFile.new(fixture_image_path('reference_image.png')) }
+        let(:wrong_file) { Rack::Test::UploadedFile.new(fixture_image_path("reference_image.png")) }
 
         it "returns nil" do
           expect(program_spreadsheet.import(wrong_file)).to be_nil
