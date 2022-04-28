@@ -193,6 +193,8 @@ ActiveRecord::Schema.define(version: 2022_04_28_023219) do
     t.string "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_indicators_on_deleted_at"
   end
 
   create_table "language_rating_scales", force: :cascade do |t|

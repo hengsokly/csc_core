@@ -16,12 +16,17 @@
 #  type               :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  deleted_at         :datetime
 #
 module CscCore
   class Indicator < ApplicationRecord
     self.table_name = "indicators"
 
     include Tagable
+    include Indicators::Removing
+
+    # Soft delete
+    acts_as_paranoid if column_names.include? "deleted_at"
 
     # Constant
     TYPES = %w[CscCore::Indicators::PredefineIndicator CscCore::Indicators::CustomIndicator].freeze
