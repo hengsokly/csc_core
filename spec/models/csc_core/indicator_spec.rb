@@ -16,6 +16,7 @@
 #  type               :string
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  deleted_at         :datetime
 #
 require "rails_helper"
 
