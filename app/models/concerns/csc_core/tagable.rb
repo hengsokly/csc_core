@@ -5,7 +5,7 @@ module CscCore
     extend ActiveSupport::Concern
 
     included do
-      belongs_to :tag, optional: true
+      belongs_to :tag, class_name: 'CscCore::Tag', optional: true
 
       delegate :name, to: :tag, prefix: :tag, allow_nil: true
 
