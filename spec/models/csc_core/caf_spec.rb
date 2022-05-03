@@ -24,7 +24,8 @@ module CscCore
   RSpec.describe Caf, type: :model do
     it { is_expected.to belong_to(:local_ngo) }
     it { is_expected.to belong_to(:educational_background).optional }
-    it { is_expected.to belong_to(:scorecard_knowledge).optional }
+    it { is_expected.to have_many(:cafs_scorecard_knowledges) }
+    it { is_expected.to have_many(:scorecard_knowledges).through(:cafs_scorecard_knowledges) }
     it { is_expected.to have_many(:facilitators) }
     it { is_expected.to have_many(:scorecards).through(:facilitators) }
 
