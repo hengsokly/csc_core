@@ -15,7 +15,8 @@ module CscCore
   class ScorecardKnowledge < ApplicationRecord
     self.table_name = "scorecard_knowledges"
 
-    has_many :cafs
+    has_many :cafs_scorecard_knowledges
+    has_many :cafs, through: :cafs_scorecard_knowledges
 
     validates :code, presence: true
     validates :name_en, presence: true

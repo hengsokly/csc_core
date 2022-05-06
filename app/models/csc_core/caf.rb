@@ -23,15 +23,15 @@ module CscCore
     self.table_name = "cafs"
 
     belongs_to :local_ngo
+    belongs_to :educational_background, optional: true
     has_many :facilitators
     has_many :scorecards, through: :facilitators
-    belongs_to :educational_background, optional: true
-    belongs_to :scorecard_knowledge, optional: true
+    has_many :cafs_scorecard_knowledges
+    has_many :scorecard_knowledges, through: :cafs_scorecard_knowledges
 
     acts_as_paranoid if column_names.include? "deleted_at"
 
     delegate :name, to: :educational_background, prefix: :educational_background, allow_nil: true
-    delegate :name, to: :scorecard_knowledge, prefix: :scorecard_knowledge, allow_nil: true
 
     GENDERS = %w[female male other].freeze
 
