@@ -35,7 +35,7 @@ class CreateCscCoreScorecards < ActiveRecord::Migration[6.1]
 
       t.integer  :creator_id
       t.datetime :locked_at
-      t.integer  :downloaded_count
+      t.integer  :downloaded_count, default: 0
       t.integer  :progress
       t.string   :language_conducted_code
       t.datetime :finished_date
