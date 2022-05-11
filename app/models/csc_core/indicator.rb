@@ -64,6 +64,7 @@ module CscCore
 
     # Uploader
     mount_uploader :image, CscCore::ImageUploader
+    mount_uploader :audio, CscCore::AudioUploader
 
     def image_or_default
       image_url || "default_image.png"

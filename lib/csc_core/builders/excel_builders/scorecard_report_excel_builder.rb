@@ -25,7 +25,6 @@ module CscCore
       end
 
       def build_row(scorecard, count)
-        byebug
         sheet.add_row main_row(scorecard, count), types: [:integer, :string]
 
         scorecard.voting_indicators.drop(1).each do |vi|

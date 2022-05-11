@@ -36,7 +36,7 @@ module CscCore
         end
 
         def build_result_columns(voting_indicator)
-          str = "<td>#{voting_indicator.indicator.name}</td>"
+          str = "<td>#{voting_indicator.indicatorable.name}</td>"
           str += build_column_median(voting_indicator.median)
           str += build_list(voting_indicator.strength_indicator_activities)
           str += build_list(voting_indicator.weakness_indicator_activities)

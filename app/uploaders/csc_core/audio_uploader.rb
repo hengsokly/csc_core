@@ -16,7 +16,7 @@ module CscCore
     # Override the directory where uploaded files will be stored.
     # This is a sensible default for uploaders that are meant to be mounted:
     def store_dir
-      klass = model.class.to_s.split('::')[1..-1]
+      klass = model.class.to_s.split("CscCore::").last
       "uploads/#{klass.underscore}/#{mounted_as}/#{model.id}"
     end
 
