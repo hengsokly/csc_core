@@ -47,6 +47,7 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  dataset_code              :string
+#  proposed_indicator_method :integer          default("participant_based")
 #
 require "rails_helper"
 
