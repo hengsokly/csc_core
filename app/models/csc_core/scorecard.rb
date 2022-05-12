@@ -47,6 +47,7 @@
 #  created_at                :datetime         not null
 #  updated_at                :datetime         not null
 #  dataset_code              :string
+#  proposed_indicator_method :integer          default("participant_based")
 #
 module CscCore
   class Scorecard < ApplicationRecord
@@ -66,6 +67,11 @@ module CscCore
     }
 
     enum progress: ScorecardProgress.statuses
+
+    enum proposed_indicator_method: {
+      participant_based: 1,
+      indicator_based: 2
+    }
 
     STATUS_COMPLETED = "completed"
     STATUS_IN_REVIEW = "in_review"

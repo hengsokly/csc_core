@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_03_021709) do
+ActiveRecord::Schema.define(version: 2022_05_12_074614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -468,6 +468,8 @@ ActiveRecord::Schema.define(version: 2022_05_03_021709) do
     t.string "name_km"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "shortcut_name_en"
+    t.string "shortcut_name_km"
   end
 
   create_table "scorecard_progresses", force: :cascade do |t|
@@ -531,6 +533,7 @@ ActiveRecord::Schema.define(version: 2022_05_03_021709) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "dataset_code"
+    t.integer "proposed_indicator_method", default: 1
     t.index ["deleted_at"], name: "index_scorecards_on_deleted_at"
     t.index ["uuid"], name: "index_scorecards_on_uuid"
   end

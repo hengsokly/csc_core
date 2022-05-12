@@ -4,12 +4,14 @@
 #
 # Table name: scorecard_knowledges
 #
-#  id         :bigint           not null, primary key
-#  code       :string
-#  name_en    :string
-#  name_km    :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id               :bigint           not null, primary key
+#  code             :string
+#  name_en          :string
+#  name_km          :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  shortcut_name_en :string
+#  shortcut_name_km :string
 #
 require "rails_helper"
 
