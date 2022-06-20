@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_03_021709) do
+ActiveRecord::Schema.define(version: 2022_05_06_075047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(version: 2022_05_03_021709) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "educational_backgrounds", force: :cascade do |t|
+  create_table "educational_backgrounds", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "code"
     t.string "name_en"
     t.string "name_km"
@@ -462,12 +462,14 @@ ActiveRecord::Schema.define(version: 2022_05_03_021709) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "scorecard_knowledges", force: :cascade do |t|
+  create_table "scorecard_knowledges", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "code"
     t.string "name_en"
     t.string "name_km"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "shortcut_name_en"
+    t.string "shortcut_name_km"
   end
 
   create_table "scorecard_progresses", force: :cascade do |t|
@@ -516,7 +518,7 @@ ActiveRecord::Schema.define(version: 2022_05_03_021709) do
     t.integer "scorecard_type"
     t.integer "creator_id"
     t.datetime "locked_at"
-    t.integer "downloaded_count"
+    t.integer "downloaded_count", default: 0
     t.integer "progress"
     t.string "language_conducted_code"
     t.datetime "finished_date"

@@ -39,15 +39,13 @@ module CscCore
         let!(:pdf_template_km) { create(:pdf_template, content: "<div>{{swot.result_table}}</div>", program: program) }
         let!(:voting_indicator) { create(:voting_indicator, scorecard: scorecard, median: 1) }
         let!(:strength_indicator_activity) do
-          create(:strength_indicator_activity, voting_indicator: voting_indicator,
-                                               scorecard: voting_indicator.scorecard)
+          create(:tmp_strength_indicator_activity, voting_indicator_uuid: voting_indicator.uuid, scorecard_uuid: voting_indicator.scorecard_uuid)
         end
         let!(:weakness_indicator_activity) do
-          create(:weakness_indicator_activity, voting_indicator: voting_indicator,
-                                               scorecard: voting_indicator.scorecard)
+          create(:tmp_weakness_indicator_activity, voting_indicator_uuid: voting_indicator.uuid, scorecard_uuid: voting_indicator.scorecard_uuid)
         end
         let!(:suggested_indicator_activity) do
-          create(:suggested_indicator_activity, voting_indicator: voting_indicator, scorecard: voting_indicator.scorecard,
+          create(:tmp_suggested_indicator_activity, voting_indicator_uuid: voting_indicator.uuid, scorecard_uuid: voting_indicator.scorecard_uuid,
                                                 selected: true)
         end
         let(:t_head) do
