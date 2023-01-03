@@ -54,7 +54,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "sidekiq", "~> 6.4.0"
 
   # Send request
-  spec.add_dependency "httparty", "~> 0.19.0"
+  spec.add_dependency "httparty", ">= 0.19", "< 0.22"
 
   # Excel read, write
   spec.add_dependency "caxlsx", "~> 3.1.1"
